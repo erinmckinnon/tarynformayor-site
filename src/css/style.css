@@ -84,14 +84,25 @@ p { margin: 0 0 1em; }
 .hero-btns { display: flex; gap: .8rem; flex-wrap: wrap; }
 .hero-img img { max-height: 620px; width: auto; margin-left: auto; filter: drop-shadow(0 20px 40px rgba(20,8,28,.35)); }
 @media (max-width: 800px) {
-  .hero-inner { grid-template-columns: 1fr; }
-  .hero-text { padding: 2.8rem 0 0; }
-  .hero h1 { max-width: none; }
-  .hero-btns .btn { flex: 1 1 auto; text-align: center; }
-  .hero-img { margin-top: .5rem; }
-  .hero-img img { max-height: 380px; margin: 0 auto; }
-  .hero h1 { font-size: clamp(2.6rem, 11vw, 3.4rem); }
+  /* Taryn stands on the gold line at the right; headline spans the top, details sit beside her */
+  .hero-inner { display: block; position: relative; }
+  .hero-text { position: relative; z-index: 1; padding: 2.4rem 0 2.6rem; }
+  .hero h1 { font-size: clamp(2.4rem, 10vw, 3.4rem); max-width: none; }
+  .hero-sub, .hero-btns { max-width: 56%; }
+  .hero-sub { font-size: 1rem; }
+  .hero-btns { flex-direction: column; align-items: stretch; }
+  .hero-btns .btn { text-align: center; }
+  .hero-img { position: absolute; right: -1.5rem; bottom: 0; width: 52%; max-width: 330px; }
+  .hero-img img { width: 100%; max-height: none; margin: 0; filter: none; }
 }
+@media (max-width: 420px) {
+  .hero-sub { font-size: .95rem; }
+  .hero-kicker { font-size: .85rem; }
+  .hero-btns { max-width: 62%; }
+  .hero-btns .btn { padding: .8rem .8rem; font-size: .88rem; white-space: nowrap; }
+}
+
+
 
 /* Key dates */
 .key-dates { background: var(--cream); border-bottom: 1px solid var(--line); }
