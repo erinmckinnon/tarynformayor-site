@@ -51,8 +51,8 @@ p { margin: 0 0 1em; }
 .btn-gold:hover { background: var(--gold-light); color: var(--night); }
 .btn-plum { background: var(--plum); color: #fff; }
 .btn-plum:hover { background: var(--night); color: #fff; }
-.btn-ghost { background: transparent; border-color: rgba(255,255,255,.55); color: #fff; }
-.btn-ghost:hover { background: #fff; color: var(--night); }
+.btn-ghost { background: #fff; border-color: #fff; color: var(--plum); }
+.btn-ghost:hover { background: var(--cream); border-color: var(--cream); color: var(--night); }
 .btn-small { padding: .55rem 1.2rem; font-size: .9rem; background: var(--plum); color: #fff; }
 .btn-small:hover { background: var(--night); color: #fff; }
 
