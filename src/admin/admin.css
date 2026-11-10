@@ -25,7 +25,11 @@ body { background: var(--cream) !important; }
 /* List of items */
 [class*="-ListCard-card"][class*="-ListCard-card"] { border-radius: 10px !important; margin-bottom: 10px !important; border: 1px solid #e5dccd !important; }
 [class*="-ListCardTitle"][class*="-ListCardTitle"] { font-size: 18px !important; padding: 20px 22px !important; color: #241b27 !important; }
-[class*="-ListCard-card"][class*="-ListCard-card"]:hover { border-color: var(--plum) !important; }
+[class*="-ListCard-card"][class*="-ListCard-card"]:hover { border-color: var(--plum) !important; background: #faf6fc !important; }
+/* Every item in a list gets a clear "Edit ›" so people know to click it */
+[class*="-ListCardLink"] { position: relative; display: block; }
+[class*="-ListCardLink"]::after { content: "Edit ›"; position: absolute; right: 22px; top: 50%; transform: translateY(-50%); font-weight: 700; font-size: 15px; color: #fff; background: var(--plum); padding: 7px 14px; border-radius: 999px; }
+[class*="-ListCardTitle"][class*="-ListCardTitle"] { padding-right: 110px !important; }
 
 /* Editing screen */
 [class*="-ControlPaneContainer"][class*="-ControlPaneContainer"] { max-width: 860px !important; margin: 0 auto !important; font-size: 17px !important; }
@@ -41,3 +45,4 @@ body { background: var(--cream) !important; }
 /* Help button (bottom-left on every screen) */
 #help-btn { position: fixed; left: 18px; bottom: 18px; z-index: 9999; background: var(--gold); color: var(--night); font: 700 16px Inter, system-ui, sans-serif; padding: 12px 20px; border-radius: 999px; text-decoration: none; box-shadow: 0 6px 18px rgba(0,0,0,.18); }
 #help-btn:hover { background: #e6cf8f; }
+@media (max-width: 700px) { #help-btn { left: auto; right: 12px; bottom: 84px; padding: 9px 14px; font-size: 14px; } }

@@ -73,7 +73,7 @@ collections:
   # ---------------- HOMEPAGE (one small section at a time) ----------------
   - name: homepage
     label: "🏠 Homepage"
-    description: "Each item below is one section of the homepage, in the order they appear."
+    description: "👇 Click a section below to edit it. They are listed in the same order they appear on the homepage."
     editor: { preview: false }
     files:
       - name: hero
@@ -164,11 +164,11 @@ collections:
   # ---------------- VOLUNTEER PAGE ----------------
   - name: volunteer
     label: "🙋 Volunteer Page"
-    description: "The page to send volunteers: tarynformayor.com/volunteer. Shifts appear there automatically — just turn on “Show on the volunteer page” when you add an event."
+    description: "👇 Click the white box below to change the words and photo on tarynformayor.com/volunteer. (The shifts themselves come from 📅 Events: turn on “Show on the volunteer page” on any event.)"
     editor: { preview: false }
     files:
       - name: volunteer
-        label: "Volunteer page words and photo"
+        label: "✏️  Edit the volunteer page words and photo"
         file: src/_data/volunteer.json
         fields:
           - { label: "Big heading", name: heading, widget: string }
@@ -198,10 +198,11 @@ collections:
   # ---------------- SETTINGS ----------------
   - name: settings
     label: "⚙️ Site Settings"
+    description: "👇 Click the first box below to change the announcement bar, donate link, phone, email, or social links."
     editor: { preview: false }
     files:
       - name: settings
-        label: "Announcement bar, donate link, contact info"
+        label: "✏️  Edit the announcement bar, donate link, and contact info"
         file: src/_data/settings.json
         fields:
           - { label: "Announcement bar", name: announcement, widget: string, required: false, hint: "Optional message across the top of every page, e.g. “Early voting starts Feb 15!” Leave empty to hide it." }
@@ -217,7 +218,7 @@ collections:
           - { label: "Website description (Google and sharing)", name: site_description, widget: text }
           - { label: "Picture shown when the site is shared", name: share_image, widget: image, choose_url: false }
       - name: advanced
-        label: "Advanced (please don’t change)"
+        label: "⚠️  Advanced (please don’t change)"
         file: src/_data/advanced.json
         fields:
           - { label: "Mailchimp form address", name: mailchimp_form_url, widget: string }
