@@ -11,8 +11,8 @@ permalink: /
       <h1>{{ home.hero.headline }}</h1>
       <p class="hero-sub">{{ home.hero.summary }}</p>
       <div class="hero-btns">
-        <a class="btn btn-gold" href="#connect">{{ home.hero.button_text }}</a>
-        <a class="btn btn-ghost" href="{{ settings.donate_url }}" target="_blank" rel="noopener">Donate</a>
+        <a class="btn btn-gold" href="{{ settings.donate_url }}" target="_blank" rel="noopener">Donate</a>
+        <a class="btn btn-ghost" href="#connect">{{ home.hero.button_text }}</a>
       </div>
     </div>
     <div class="hero-img"><img src="{{ home.hero.photo }}" alt="Taryn Sabia" width="798" height="1037" fetchpriority="high"></div>
@@ -50,8 +50,9 @@ permalink: /
   </div>
 </section>
 
+{% include "donate-band.njk" %}
+
 <section class="proof">
-  <div class="hero-map faint" aria-hidden="true"></div>
   <div class="wrap">
     <blockquote class="proof-quote">“{{ home.about.quote }}”</blockquote>
     <dl class="stats">
@@ -125,8 +126,6 @@ permalink: /
     </div>
   </div>
 </section>
-
-{% include "donate-band.njk" %}
 
 <section class="section">
   <div class="wrap">
