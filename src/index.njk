@@ -4,6 +4,7 @@ permalink: /
 ---
 {% set keyDates = collections.events | inCategory("Election Date") | upcoming %}
 <section class="hero">
+  <div class="hero-map" aria-hidden="true"></div>
   <div class="wrap hero-inner">
     <div class="hero-text">
       <p class="hero-kicker">{{ home.hero_eyebrow }}</p>
@@ -32,73 +33,92 @@ permalink: /
 </section>
 {% endif %}
 
-{% if home.youtube_video_id %}
-{% set vid = home.youtube_video_id | youtubeId %}
-<section class="section video">
-  <div class="wrap video-inner">
-    <div class="video-copy">
-      <h2>{{ home.video_heading }}</h2>
-      <p class="lede">{{ home.video_text }}</p>
+<section class="meet" id="meet">
+  <div class="wrap meet-inner">
+    <div class="meet-photos">
+      <img class="meet-main" src="{{ home.bio_photo }}" alt="Taryn Sabia" loading="lazy">
+      {% if home.bio_photo_2 %}<img class="meet-second" src="{{ home.bio_photo_2 }}" alt="Taryn Sabia speaking at a community event" loading="lazy">{% endif %}
     </div>
-    <div class="yt" data-yt="{{ vid }}">
-      <img src="https://i.ytimg.com/vi/{{ vid }}/maxresdefault.jpg" alt="" loading="lazy">
-      <button type="button" class="yt-play" aria-label="Play video: {{ home.video_heading }}"><svg viewBox="0 0 68 48" aria-hidden="true"><path d="M66.5 7.7A8.5 8.5 0 0 0 60.5 1.7C55.2.3 34 .3 34 .3s-21.2 0-26.5 1.4A8.5 8.5 0 0 0 1.5 7.7C.1 13 .1 24 .1 24s0 11 1.4 16.3a8.5 8.5 0 0 0 6 6C12.8 47.7 34 47.7 34 47.7s21.2 0 26.5-1.4a8.5 8.5 0 0 0 6-6C67.9 35 67.9 24 67.9 24s0-11-1.4-16.3z" fill="#4b2c5e"/><path d="M45 24 27 14v20z" fill="#fff"/></svg></button>
-    </div>
-  </div>
-</section>
-{% endif %}
-
-{% include "donate-band.njk" %}
-
-<section class="section" id="meet">
-  <div class="wrap bio">
-    <div class="bio-text">
+    <div class="meet-text">
       <h2>Meet Taryn Sabia</h2>
-      <p class="lede">{{ home.bio_intro }}</p>
+      <p class="meet-intro">{{ home.bio_intro }}</p>
       {% for s in home.bio_sections %}
       <h3>{{ s.heading }}</h3>
       <p>{{ s.text }}</p>
       {% endfor %}
     </div>
-    <div class="bio-side">
-      <img src="{{ home.bio_photo }}" alt="Taryn Sabia" loading="lazy">
-      <blockquote>“{{ home.quote }}”</blockquote>
-    </div>
-  </div>
-  <div class="wrap stats">
-    {% for s in home.stats %}<div class="stat"><strong>{{ s.number }}</strong><span>{{ s.label }}</span></div>{% endfor %}
   </div>
 </section>
 
-<section class="section cream" id="issues">
+<section class="proof">
+  <div class="hero-map faint" aria-hidden="true"></div>
+  <div class="wrap">
+    <blockquote class="proof-quote">“{{ home.quote }}”</blockquote>
+    <dl class="stats">
+      {% for s in home.stats %}<div class="stat"><dt>{{ s.label }}</dt><dd>{{ s.number }}</dd></div>{% endfor %}
+    </dl>
+  </div>
+</section>
+
+{% if home.youtube_video_id %}
+{% set vid = home.youtube_video_id | youtubeId %}
+<section class="video">
+  <div class="wrap video-inner">
+    <div class="video-copy">
+      <h2>{{ home.video_heading }}</h2>
+      <p>{{ home.video_text }}</p>
+    </div>
+    <div class="yt" data-yt="{{ vid }}">
+      <img src="https://i.ytimg.com/vi/{{ vid }}/maxresdefault.jpg" alt="" loading="lazy">
+      <button type="button" class="yt-play" aria-label="Play video: {{ home.video_heading }}"><svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="39" fill="#c9a54e"/><path d="M33 26l22 14-22 14z" fill="#23142b"/></svg></button>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="issues-sec" id="issues">
   <div class="wrap">
     <div class="issues-head">
       <h2>On the issues</h2>
-      <p class="lede">{{ home.issues_intro }}</p>
+      <p>{{ home.issues_intro }}</p>
     </div>
-    <div class="issues">
+    <div class="issue-tabs" data-tabs>
+      <div class="tab-list" role="tablist" aria-label="Issues">
+        {% for i in issues.issues %}
+        <button role="tab" id="tab-{{ loop.index }}" aria-controls="panel-{{ loop.index }}" aria-selected="{{ 'true' if loop.first else 'false' }}" tabindex="{{ '0' if loop.first else '-1' }}">{{ i.tag }}</button>
+        {% endfor %}
+      </div>
       {% for i in issues.issues %}
-      <article class="issue">
-        <h3 class="issue-tag">{{ i.tag }}</h3>
-        <div class="issue-body">
-          <p class="issue-title">{{ i.title }}</p>
-          <p>{{ i.text }}</p>
-          {% if i.links and i.links.length %}<ul class="issue-links">{% for l in i.links %}<li><a href="{{ l.url }}">{{ l.label }}</a></li>{% endfor %}</ul>{% endif %}
-        </div>
-      </article>
+      <div class="tab-panel" role="tabpanel" id="panel-{{ loop.index }}" aria-labelledby="tab-{{ loop.index }}"{% if not loop.first %} hidden{% endif %}>
+        <p class="panel-tag">{{ i.tag }}</p>
+        <h3>{{ i.title }}</h3>
+        <p>{{ i.text }}</p>
+        {% if i.links and i.links.length %}<ul class="issue-links">{% for l in i.links %}<li><a href="{{ l.url }}">{{ l.label }}</a></li>{% endfor %}</ul>{% endif %}
+      </div>
       {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="community" style="--photo: url('{{ home.community_photo }}')">
+  <div class="wrap community-inner">
+    <h2>{{ home.community_heading }}</h2>
+    <p>{{ home.community_text }}</p>
+    <div class="hero-btns">
+      <a class="btn btn-gold" href="#volunteer">Volunteer</a>
+      <a class="btn btn-ghost" href="/events/">See upcoming events</a>
     </div>
   </div>
 </section>
 
 <section class="section connect" id="connect">
   <div class="wrap two-col">
-    <div>
+    <div class="form-card">
       <h2>{{ home.connect_heading }}</h2>
-      <p class="lede">{{ home.connect_text }}</p>
+      <p>{{ home.connect_text }}</p>
       {% set compact = false %}{% include "signup-form.njk" %}
     </div>
-    <div id="volunteer">
+    <div class="form-card" id="volunteer">
       <h2>{{ home.volunteer_heading }}</h2>
       <p>{{ home.volunteer_text }}</p>
       {% include "volunteer-form.njk" %}
@@ -106,7 +126,9 @@ permalink: /
   </div>
 </section>
 
-<section class="section cream">
+{% include "donate-band.njk" %}
+
+<section class="section">
   <div class="wrap">
     <div class="section-head"><h2>News &amp; updates</h2><a href="/news/">All news</a></div>
     <div class="news-feature">
@@ -116,21 +138,12 @@ permalink: /
 </section>
 
 {% set upcomingEvents = collections.events | notCategory("Election Date") | upcoming %}
-<section class="section">
+<section class="section cream">
   <div class="wrap">
     <div class="section-head"><h2>Upcoming events</h2><a href="/events/">All events</a></div>
-    <p class="lede">Join Taryn at an upcoming event, volunteer opportunity, or community conversation.</p>
     <div class="event-list" data-hide-past data-limit="4">
       {% for ev in upcomingEvents | head(8) %}{% include "event-card.njk" %}{% endfor %}
     </div>
     <p class="empty-note"{% if upcomingEvents.length %} hidden{% endif %}>Nothing on the calendar right now. <a href="#connect">Sign up for updates</a> and we’ll tell you when the next event is set.</p>
-  </div>
-</section>
-
-<section class="closing">
-  <div class="wrap narrow center">
-    <h2>{{ home.closing_heading }}</h2>
-    <p>{{ home.closing_text }}</p>
-    <a class="btn btn-gold" href="{{ settings.donate_url }}" target="_blank" rel="noopener">Contribute now</a>
   </div>
 </section>

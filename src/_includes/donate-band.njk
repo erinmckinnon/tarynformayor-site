@@ -1,17 +1,13 @@
 <section class="donate-band">
   <div class="wrap donate-inner">
     <div>
-      <p class="eyebrow light">Power the Campaign</p>
       <h2>{{ home.donate_heading }}</h2>
       <p>{{ home.donate_text }}</p>
-    </div>
-    <div class="donate-box">
-      <p class="small-caps">Choose an amount</p>
-      <div class="amounts">
-        {% for a in settings.donate_amounts %}<a class="amount" href="{{ settings.donate_url }}" target="_blank" rel="noopener">{{ a }}</a>{% endfor %}
-        <a class="amount" href="{{ settings.donate_url }}" target="_blank" rel="noopener">Other</a>
-      </div>
       <p class="tagline">{{ home.donate_tagline }}</p>
+    </div>
+    <div class="amounts" role="group" aria-label="Donation amounts">
+      {% for a in settings.donate_amounts %}<a class="amount" href="{{ settings.donate_url }}" target="_blank" rel="noopener">{{ a }}</a>{% endfor %}
+      <a class="amount other" href="{{ settings.donate_url }}" target="_blank" rel="noopener">Another amount</a>
     </div>
   </div>
 </section>

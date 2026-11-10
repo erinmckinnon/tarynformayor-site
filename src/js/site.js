@@ -9,6 +9,26 @@
     nav.addEventListener('click', function (e) { if (e.target.tagName === 'A') nav.classList.remove('open'); });
   }
 
+  // Issues tabs (arrow keys move between tabs)
+  document.querySelectorAll('[data-tabs]').forEach(function (box) {
+    var tabs = [].slice.call(box.querySelectorAll('[role=tab]'));
+    function select(t) {
+      tabs.forEach(function (x) {
+        var on = x === t;
+        x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1;
+        document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+      });
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { select(t); });
+      t.addEventListener('keydown', function (e) {
+        var n = e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : e.key === 'ArrowUp' || e.key === 'ArrowLeft' ? -1 : 0;
+        if (!n) return; e.preventDefault();
+        var next = tabs[(i + n + tabs.length) % tabs.length]; select(next); next.focus();
+      });
+    });
+  });
+
   // Video: load YouTube only when someone presses play
   document.querySelectorAll('.yt').forEach(function (box) {
     box.addEventListener('click', function () {

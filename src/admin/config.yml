@@ -80,7 +80,8 @@ collections:
           - { label: "Donate section text", name: donate_text, widget: text }
           - { label: "Donate tagline", name: donate_tagline, widget: string }
           - { label: "Bio — intro line", name: bio_intro, widget: text }
-          - { label: "Bio — photo", name: bio_photo, widget: image }
+          - { label: "Bio — main photo", name: bio_photo, widget: image }
+          - { label: "Bio — second photo (smaller, overlapping)", name: bio_photo_2, widget: image, required: false }
           - label: "Bio — sections"
             name: bio_sections
             widget: list
@@ -96,8 +97,11 @@ collections:
             fields:
               - { label: Number, name: number, widget: string }
               - { label: Label, name: label, widget: string }
-          - { label: "Big purple statement", name: mission_statement, widget: text }
+          - { label: "Summary under the big headline", name: mission_statement, widget: text }
           - { label: "Issues — intro text", name: issues_intro, widget: text }
+          - { label: "Crowd photo band — photo", name: community_photo, widget: image, hint: "A wide photo of supporters works best." }
+          - { label: "Crowd photo band — heading", name: community_heading, widget: string }
+          - { label: "Crowd photo band — text", name: community_text, widget: text }
           - { label: "Email signup heading", name: connect_heading, widget: string }
           - { label: "Email signup text", name: connect_text, widget: text }
           - { label: "Volunteer heading", name: volunteer_heading, widget: string }
