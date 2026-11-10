@@ -7,15 +7,15 @@ permalink: /
   <div class="hero-map" aria-hidden="true"></div>
   <div class="wrap hero-inner">
     <div class="hero-text">
-      <p class="hero-kicker">{{ home.hero_eyebrow }}</p>
-      <h1>{{ home.hero_headline }}</h1>
-      <p class="hero-sub">{{ home.mission_statement }}</p>
+      <p class="hero-kicker">{{ home.hero.kicker }}</p>
+      <h1>{{ home.hero.headline }}</h1>
+      <p class="hero-sub">{{ home.hero.summary }}</p>
       <div class="hero-btns">
-        <a class="btn btn-gold" href="#connect">{{ home.hero_button_text }}</a>
+        <a class="btn btn-gold" href="#connect">{{ home.hero.button_text }}</a>
         <a class="btn btn-ghost" href="{{ settings.donate_url }}" target="_blank" rel="noopener">Donate</a>
       </div>
     </div>
-    <div class="hero-img"><img src="{{ home.hero_image }}" alt="Taryn Sabia" width="798" height="1037" fetchpriority="high"></div>
+    <div class="hero-img"><img src="{{ home.hero.photo }}" alt="Taryn Sabia" width="798" height="1037" fetchpriority="high"></div>
   </div>
 </section>
 {% if keyDates.length %}
@@ -36,13 +36,13 @@ permalink: /
 <section class="meet" id="meet">
   <div class="wrap meet-inner">
     <div class="meet-photos">
-      <img class="meet-main" src="{{ home.bio_photo }}" alt="Taryn Sabia" loading="lazy">
-      {% if home.bio_photo_2 %}<img class="meet-second" src="{{ home.bio_photo_2 }}" alt="Taryn Sabia speaking at a community event" loading="lazy">{% endif %}
+      <img class="meet-main" src="{{ home.about.photo }}" alt="Taryn Sabia" loading="lazy">
+      {% if home.about.photo_2 %}<img class="meet-second" src="{{ home.about.photo_2 }}" alt="Taryn Sabia speaking at a community event" loading="lazy">{% endif %}
     </div>
     <div class="meet-text">
       <h2>Meet Taryn Sabia</h2>
-      <p class="meet-intro">{{ home.bio_intro }}</p>
-      {% for s in home.bio_sections %}
+      <p class="meet-intro">{{ home.about.intro }}</p>
+      {% for s in home.about.sections %}
       <h3>{{ s.heading }}</h3>
       <p>{{ s.text }}</p>
       {% endfor %}
@@ -53,24 +53,24 @@ permalink: /
 <section class="proof">
   <div class="hero-map faint" aria-hidden="true"></div>
   <div class="wrap">
-    <blockquote class="proof-quote">“{{ home.quote }}”</blockquote>
+    <blockquote class="proof-quote">“{{ home.about.quote }}”</blockquote>
     <dl class="stats">
-      {% for s in home.stats %}<div class="stat"><dt>{{ s.label }}</dt><dd>{{ s.number }}</dd></div>{% endfor %}
+      {% for s in home.about.stats %}<div class="stat"><dt>{{ s.label }}</dt><dd>{{ s.number }}</dd></div>{% endfor %}
     </dl>
   </div>
 </section>
 
-{% if home.youtube_video_id %}
-{% set vid = home.youtube_video_id | youtubeId %}
+{% if home.video.youtube %}
+{% set vid = home.video.youtube | youtubeId %}
 <section class="video">
   <div class="wrap video-inner">
     <div class="video-copy">
-      <h2>{{ home.video_heading }}</h2>
-      <p>{{ home.video_text }}</p>
+      <h2>{{ home.video.heading }}</h2>
+      <p>{{ home.video.text }}</p>
     </div>
     <div class="yt" data-yt="{{ vid }}">
       <img src="https://i.ytimg.com/vi/{{ vid }}/maxresdefault.jpg" alt="" loading="lazy">
-      <button type="button" class="yt-play" aria-label="Play video: {{ home.video_heading }}"><svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="39" fill="#c9a54e"/><path d="M33 26l22 14-22 14z" fill="#23142b"/></svg></button>
+      <button type="button" class="yt-play" aria-label="Play video: {{ home.video.heading }}"><svg viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="39" fill="#c9a54e"/><path d="M33 26l22 14-22 14z" fill="#23142b"/></svg></button>
     </div>
   </div>
 </section>
@@ -80,15 +80,15 @@ permalink: /
   <div class="wrap">
     <div class="issues-head">
       <h2>On the issues</h2>
-      <p>{{ home.issues_intro }}</p>
+      <p>{{ home.issues.intro }}</p>
     </div>
     <div class="issue-tabs" data-tabs>
       <div class="tab-list" role="tablist" aria-label="Issues">
-        {% for i in issues.issues %}
+        {% for i in home.issues.list %}
         <button role="tab" id="tab-{{ loop.index }}" aria-controls="panel-{{ loop.index }}" aria-selected="{{ 'true' if loop.first else 'false' }}" tabindex="{{ '0' if loop.first else '-1' }}">{{ i.tag }}</button>
         {% endfor %}
       </div>
-      {% for i in issues.issues %}
+      {% for i in home.issues.list %}
       <div class="tab-panel" role="tabpanel" id="panel-{{ loop.index }}" aria-labelledby="tab-{{ loop.index }}"{% if not loop.first %} hidden{% endif %}>
         <p class="panel-tag">{{ i.tag }}</p>
         <h3>{{ i.title }}</h3>
@@ -100,10 +100,10 @@ permalink: /
   </div>
 </section>
 
-<section class="community" style="--photo: url('{{ home.community_photo }}')">
+<section class="community" style="--photo: url('{{ home.community.photo }}')">
   <div class="wrap community-inner">
-    <h2>{{ home.community_heading }}</h2>
-    <p>{{ home.community_text }}</p>
+    <h2>{{ home.community.heading }}</h2>
+    <p>{{ home.community.text }}</p>
     <div class="hero-btns">
       <a class="btn btn-gold" href="#volunteer">Volunteer</a>
       <a class="btn btn-ghost" href="/events/">See upcoming events</a>
@@ -114,13 +114,13 @@ permalink: /
 <section class="section connect" id="connect">
   <div class="wrap two-col">
     <div class="form-card">
-      <h2>{{ home.connect_heading }}</h2>
-      <p>{{ home.connect_text }}</p>
+      <h2>{{ home.forms.signup_heading }}</h2>
+      <p>{{ home.forms.signup_text }}</p>
       {% set compact = false %}{% include "signup-form.njk" %}
     </div>
     <div class="form-card" id="volunteer">
-      <h2>{{ home.volunteer_heading }}</h2>
-      <p>{{ home.volunteer_text }}</p>
+      <h2>{{ home.forms.volunteer_heading }}</h2>
+      <p>{{ home.forms.volunteer_text }}</p>
       {% include "volunteer-form.njk" %}
     </div>
   </div>

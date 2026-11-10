@@ -1,0 +1,43 @@
+/* Friendlier look for the website editor: bigger text, campaign colors, obvious buttons.
+   Decap's class names end in a readable label (e.g. css-abc123-ListCardTitle), which these selectors match. */
+:root { --plum: #4b2c5e; --night: #23142b; --gold: #c9a54e; --cream: #f5efe4; }
+body, input, textarea, select, button { font-family: Inter, system-ui, -apple-system, "Segoe UI", Arial, sans-serif !important; }
+body { background: var(--cream) !important; }
+
+/* Top bar */
+[class*="-AppHeader-css"][class*="-AppHeader-css"] { border-bottom: 4px solid var(--gold); }
+[class*="AppHeaderNavLink"][class*="AppHeaderNavLink"], [class*="AppHeaderButton"][class*="AppHeaderButton"] { font-size: 17px !important; }
+[class*="AppHeaderQuickNewButton"] { display: none !important; }
+
+/* Left menu */
+[class*="-SidebarHeading"][class*="-SidebarHeading"] { font-size: 15px !important; text-transform: uppercase; letter-spacing: .08em; color: #6b5f72 !important; }
+[class*="-SidebarNavLink"][class*="-SidebarNavLink"] { font-size: 18px !important; padding: 14px 18px !important; color: #2b2430 !important; }
+[class*="-SidebarNavLink"][class*="-SidebarNavLink"] { background: transparent !important; border-left-color: transparent !important; font-weight: 500 !important; }
+[class*="-SidebarNavLink"][class*="-SidebarNavLink"]:hover { background: #f6f1f8 !important; }
+[class*="-SidebarNavLink"].active, [class*="-SidebarNavLink"][aria-current="page"] { background: #efe6f4 !important; color: var(--plum) !important; border-left-color: var(--plum) !important; font-weight: 700 !important; }
+
+/* Collection heading + the big "New" button */
+[class*="-CollectionTopHeading"][class*="-CollectionTopHeading"] { font-size: 30px !important; color: var(--night) !important; }
+[class*="-CollectionTopDescription"][class*="-CollectionTopDescription"] { font-size: 17px !important; line-height: 1.5 !important; color: #3d3442 !important; }
+[class*="-CollectionTopNewButton"][class*="-CollectionTopNewButton"] { background: var(--plum) !important; color: #fff !important; font-size: 18px !important; font-weight: 700 !important; height: auto !important; padding: 14px 26px !important; border-radius: 999px !important; box-shadow: 0 6px 18px rgba(75,44,94,.3) !important; }
+[class*="-CollectionTopNewButton"][class*="-CollectionTopNewButton"]:hover { background: var(--night) !important; }
+
+/* List of items */
+[class*="-ListCard-card"][class*="-ListCard-card"] { border-radius: 10px !important; margin-bottom: 10px !important; border: 1px solid #e5dccd !important; }
+[class*="-ListCardTitle"][class*="-ListCardTitle"] { font-size: 18px !important; padding: 20px 22px !important; color: #241b27 !important; }
+[class*="-ListCard-card"][class*="-ListCard-card"]:hover { border-color: var(--plum) !important; }
+
+/* Editing screen */
+[class*="-ControlPaneContainer"][class*="-ControlPaneContainer"] { max-width: 860px !important; margin: 0 auto !important; font-size: 17px !important; }
+[class*="-FieldLabel"][class*="-FieldLabel"] { font-size: 16px !important; text-transform: none !important; letter-spacing: 0 !important; color: var(--night) !important; font-weight: 700 !important; padding: 10px 14px !important; }
+[class*="-ControlHint"][class*="-ControlHint"] { font-size: 15px !important; line-height: 1.45 !important; color: #5a4f60 !important; }
+[class*="-ControlContainer"] input, [class*="-ControlContainer"] textarea { font-size: 17px !important; }
+[class*="-ControlContainer"][class*="-ControlContainer"] { margin-bottom: 28px !important; }
+
+/* Publish button: big and obvious */
+[class*="PublishButton"][class*="PublishButton"] { background: var(--plum) !important; color: #fff !important; font-size: 18px !important; font-weight: 700 !important; height: auto !important; padding: 12px 26px !important; border-radius: 999px !important; }
+[class*="-ToolbarContainer"][class*="-ToolbarContainer"] { border-bottom: 3px solid var(--gold) !important; }
+
+/* Help button (bottom-left on every screen) */
+#help-btn { position: fixed; left: 18px; bottom: 18px; z-index: 9999; background: var(--gold); color: var(--night); font: 700 16px Inter, system-ui, sans-serif; padding: 12px 20px; border-radius: 999px; text-decoration: none; box-shadow: 0 6px 18px rgba(0,0,0,.18); }
+#help-btn:hover { background: #e6cf8f; }

@@ -7,13 +7,13 @@ permalink: /get-involved/
 <section class="section">
   <div class="wrap two-col">
     <div id="volunteer">
-      <h2>{{ home.volunteer_heading }}</h2>
+      <h2>{{ home.forms.volunteer_heading }}</h2>
       <p>Tell us how you would like to get involved and a member of Team Taryn will be in touch.</p>
       {% include "volunteer-form.njk" %}
     </div>
     <div>
-      <h2>{{ home.connect_heading }}</h2>
-      <p>{{ home.connect_text }}</p>
+      <h2>{{ home.forms.signup_heading }}</h2>
+      <p>{{ home.forms.signup_text }}</p>
       {% set compact = false %}{% include "signup-form.njk" %}
       <div class="more-ways">
         <h3>More ways to help</h3>

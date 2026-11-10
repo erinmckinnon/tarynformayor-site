@@ -6,6 +6,8 @@ backend:
     create: 'Add {{collection}} “{{slug}}” (via website editor)'
     update: 'Update {{collection}} “{{slug}}” (via website editor)'
     delete: 'Delete {{collection}} “{{slug}}” (via website editor)'
+    uploadMedia: 'Upload photo “{{path}}” (via website editor)'
+    deleteMedia: 'Delete photo “{{path}}” (via website editor)'
 
 site_url: https://tarynformayor.com
 display_url: https://tarynformayor.com
@@ -19,109 +21,110 @@ collections:
   # ---------------- EVENTS ----------------
   - name: events
     label: "📅 Events"
-    label_singular: Event
-    description: "Add a new event with the button at the top right. Past events move off the homepage automatically."
+    label_singular: "Event"
+    description: "To add an event, click the purple “+ Event” button. Events disappear from the homepage by themselves after they happen."
     folder: src/events
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    sortable_fields: ['start', 'title']
-    summary: "{{title}} — {{start | date('MMM D, YYYY h:mm A')}}"
-    view_groups: [{ label: Type, field: category }]
+    editor: { preview: false }
+    sortable_fields:
+      - { field: start, label: "Date", default_sort: desc }
+      - { field: title, label: "Name" }
+    summary: "{{start | date('ddd, MMM D, YYYY')}}  ·  {{title}}"
+    view_groups: [{ label: "Type of event", field: category }]
     fields:
-      - { label: "Event name", name: title, widget: string }
-      - { label: "Starts", name: start, widget: datetime, format: "YYYY-MM-DDTHH:mm", date_format: "MMM D, YYYY", time_format: "h:mm A", picker_utc: false, hint: "Tampa time" }
-      - { label: "Ends", name: end, widget: datetime, format: "YYYY-MM-DDTHH:mm", date_format: "MMM D, YYYY", time_format: "h:mm A", picker_utc: false, required: false, hint: "Optional" }
-      - { label: "Type of event", name: category, widget: select, default: "Community", options: ["Coffee & Conversation", "Volunteer", "Fundraiser", "Community", "Election Date"], hint: "“Coffee & Conversation” events also show on the Coffee page." }
-      - { label: "Place name", name: location, widget: string, required: false, hint: "e.g. Buddy Brew (Bay to Bay)" }
-      - { label: "Street address", name: address, widget: string, required: false }
-      - { label: "RSVP / ticket link", name: rsvp_link, widget: string, required: false, hint: "Paste an Anedot, Eventbrite, or Mobilize link. Leave blank if no RSVP." }
-      - { label: "Flyer or photo", name: image, widget: image, required: false, choose_url: false }
-      - { label: "Description", name: body, widget: markdown, required: false, buttons: [bold, italic, link, heading-two, heading-three, bulleted-list, numbered-list], editor_components: [image] }
-      - { label: "Hide this event", name: draft, widget: boolean, default: false, required: false, hint: "Turn on to hide it from the website without deleting it." }
+      - { label: "1. Event name", name: title, widget: string, hint: "Example: Coffee & Conversation @ Buddy Brew" }
+      - { label: "2. Date and start time", name: start, widget: datetime, format: "YYYY-MM-DDTHH:mm", date_format: "MMMM D, YYYY", time_format: "h:mm A", picker_utc: false, hint: "Click the box and pick the day and time (Tampa time)." }
+      - { label: "3. End time", name: end, widget: datetime, format: "YYYY-MM-DDTHH:mm", date_format: "MMMM D, YYYY", time_format: "h:mm A", picker_utc: false, required: false }
+      - { label: "4. Type of event", name: category, widget: select, default: "Community", options: ["Coffee & Conversation", "Volunteer", "Fundraiser", "Community", "Election Date"], hint: "“Coffee & Conversation” events also appear on the Coffee page. “Election Date” shows in the Key Dates strip." }
+      - { label: "5. Place name", name: location, widget: string, required: false, hint: "Example: Buddy Brew (Bay to Bay)" }
+      - { label: "6. Street address", name: address, widget: string, required: false }
+      - { label: "7. RSVP or ticket link", name: rsvp_link, widget: string, required: false, hint: "Copy the link from Anedot or Mobilize and paste it here. Leave empty if people don’t need to RSVP." }
+      - { label: "8. Flyer or photo", name: image, widget: image, required: false, choose_url: false, hint: "Click “Choose an image” and pick the flyer from your computer." }
+      - { label: "9. Description", name: body, required: false, widget: markdown, modes: [rich_text], buttons: [bold, italic, link, heading-two, heading-three, bulleted-list, numbered-list], editor_components: [image] }
+      - { label: "Hide this event from the website", name: draft, widget: boolean, default: false, required: false, hint: "Turn on to hide it without deleting it." }
 
   # ---------------- NEWS ----------------
   - name: news
     label: "📰 News & Updates"
     label_singular: "News post"
-    description: "Campaign updates, press releases, and press coverage. Newest posts show first."
+    description: "To write a post, click the purple “+ News post” button. The newest post shows first on the homepage."
     folder: src/news
     create: true
     slug: "{{slug}}"
-    sortable_fields: ['date', 'title']
-    summary: "{{title}} — {{date | date('MMM D, YYYY')}}"
-    view_groups: [{ label: Category, field: category }]
+    editor: { preview: false }
+    sortable_fields:
+      - { field: date, label: "Date", default_sort: desc }
+      - { field: title, label: "Headline" }
+    summary: "{{date | date('MMM D, YYYY')}}  ·  {{title}}"
     fields:
-      - { label: "Headline", name: title, widget: string }
-      - { label: "Date", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "MMM D, YYYY", time_format: false, picker_utc: true }
-      - { label: "Category", name: category, widget: select, default: "Campaign", options: ["Campaign", "Press Release", "In the News", "Achievement"] }
-      - { label: "Main image", name: image, widget: image, required: false, choose_url: false, hint: "Square images look best (e.g. 1080×1080)." }
-      - { label: "One-sentence summary", name: summary, widget: text, required: false, hint: "Shown when the post is shared on Facebook, etc." }
-      - { label: "Link to outside article", name: external_link, widget: string, required: false, hint: "For press coverage: paste the newspaper’s link and a “Read the full story” button will appear." }
-      - { label: "Story", name: body, widget: markdown, buttons: [bold, italic, link, quote, heading-two, heading-three, bulleted-list, numbered-list], editor_components: [image] }
-      - { label: "Hide this post", name: draft, widget: boolean, default: false, required: false }
+      - { label: "1. Headline", name: title, widget: string }
+      - { label: "2. Date", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "MMMM D, YYYY", time_format: false, picker_utc: true, hint: "Usually today’s date." }
+      - { label: "3. Category", name: category, widget: select, default: "Campaign", options: ["Campaign", "Press Release", "In the News", "Achievement"], hint: "Use “In the News” for articles written about Taryn by newspapers or TV." }
+      - { label: "4. Main picture", name: image, widget: image, required: false, choose_url: false, hint: "Square pictures look best." }
+      - { label: "5. One-sentence summary", name: summary, widget: text, required: false, hint: "Shows when someone shares the post on Facebook." }
+      - { label: "6. The story", name: body, widget: markdown, modes: [rich_text], buttons: [bold, italic, link, heading-two, heading-three, bulleted-list, numbered-list], editor_components: [image] }
+      - { label: "Link to the outside article", name: external_link, widget: string, required: false, hint: "Only for “In the News” posts: paste the newspaper’s link and a “Read the full story” button appears." }
+      - { label: "Hide this post from the website", name: draft, widget: boolean, default: false, required: false }
 
-  # ---------------- HOMEPAGE ----------------
+  # ---------------- HOMEPAGE (one small section at a time) ----------------
   - name: homepage
     label: "🏠 Homepage"
+    description: "Each item below is one section of the homepage, in the order they appear."
     editor: { preview: false }
     files:
-      - name: home
-        label: "Homepage text & photos"
-        file: src/_data/home.json
+      - name: hero
+        label: "1. Top banner (headline and big photo)"
+        file: src/_data/home/hero.json
         fields:
-          - { label: "Small text above headline", name: hero_eyebrow, widget: string }
-          - { label: "Big headline", name: hero_headline, widget: string }
-          - { label: "Top photo of Taryn", name: hero_image, widget: image, hint: "A cut-out (transparent background) photo works best." }
-          - { label: "Top button text", name: hero_button_text, widget: string }
-          - { label: "Video section heading", name: video_heading, widget: string }
-          - { label: "Video section text", name: video_text, widget: text }
-          - { label: "YouTube video link", name: youtube_video_id, widget: string, required: false, hint: "Paste the YouTube link. Leave blank to hide the video section." }
-          - { label: "Donate section heading", name: donate_heading, widget: string }
-          - { label: "Donate section text", name: donate_text, widget: text }
-          - { label: "Donate tagline", name: donate_tagline, widget: string }
-          - { label: "Bio — intro line", name: bio_intro, widget: text }
-          - { label: "Bio — main photo", name: bio_photo, widget: image }
-          - { label: "Bio — second photo (smaller, overlapping)", name: bio_photo_2, widget: image, required: false }
-          - label: "Bio — sections"
-            name: bio_sections
+          - { label: "Small line above the headline", name: kicker, widget: string }
+          - { label: "Big headline", name: headline, widget: string }
+          - { label: "Sentence under the headline", name: summary, widget: text }
+          - { label: "Button text", name: button_text, widget: string }
+          - { label: "Photo of Taryn", name: photo, widget: image, choose_url: false, hint: "Must be a cut-out photo (no background). Ask Erin before changing." }
+      - name: about
+        label: "2. Meet Taryn (bio, quote, numbers)"
+        file: src/_data/home/about.json
+        fields:
+          - { label: "Intro sentence", name: intro, widget: text }
+          - { label: "Main photo", name: photo, widget: image, choose_url: false }
+          - { label: "Small overlapping photo", name: photo_2, widget: image, required: false, choose_url: false }
+          - label: "Bio paragraphs"
+            name: sections
             widget: list
             summary: "{{fields.heading}}"
             fields:
-              - { label: Heading, name: heading, widget: string }
-              - { label: Text, name: text, widget: text }
-          - { label: "Quote", name: quote, widget: text }
+              - { label: "Short heading", name: heading, widget: string }
+              - { label: "Paragraph", name: text, widget: text }
+          - { label: "Quote (dark purple band)", name: quote, widget: text }
           - label: "Numbers (e.g. 40+ Public Projects)"
             name: stats
             widget: list
-            summary: "{{fields.number}} {{fields.label}}"
+            summary: "{{fields.number}}  {{fields.label}}"
             fields:
-              - { label: Number, name: number, widget: string }
-              - { label: Label, name: label, widget: string }
-          - { label: "Summary under the big headline", name: mission_statement, widget: text }
-          - { label: "Issues — intro text", name: issues_intro, widget: text }
-          - { label: "Crowd photo band — photo", name: community_photo, widget: image, hint: "A wide photo of supporters works best." }
-          - { label: "Crowd photo band — heading", name: community_heading, widget: string }
-          - { label: "Crowd photo band — text", name: community_text, widget: text }
-          - { label: "Email signup heading", name: connect_heading, widget: string }
-          - { label: "Email signup text", name: connect_text, widget: text }
-          - { label: "Volunteer heading", name: volunteer_heading, widget: string }
-          - { label: "Volunteer text", name: volunteer_text, widget: text }
-          - { label: "Volunteer checkboxes", name: volunteer_options, widget: list, hint: "The choices people can tick on the volunteer form." }
-          - { label: "Closing section heading", name: closing_heading, widget: string }
-          - { label: "Closing section text", name: closing_text, widget: text }
-      - name: issues
-        label: "Issues / Priorities"
-        file: src/_data/issues.json
+              - { label: "Number", name: number, widget: string }
+              - { label: "What it counts", name: label, widget: string }
+      - name: video
+        label: "3. Video"
+        file: src/_data/home/video.json
         fields:
-          - label: Issues
-            name: issues
+          - { label: "Heading", name: heading, widget: string }
+          - { label: "Text", name: text, widget: text }
+          - { label: "YouTube link", name: youtube, widget: string, required: false, hint: "Copy the address of the YouTube video and paste it here. Leave empty to hide this section." }
+      - name: issues
+        label: "4. On the Issues"
+        file: src/_data/home/issues.json
+        fields:
+          - { label: "Intro sentence", name: intro, widget: text }
+          - label: "Issues"
+            name: list
             widget: list
-            summary: "{{fields.tag}} — {{fields.title}}"
-            hint: "Drag to reorder."
+            summary: "{{fields.tag}}: {{fields.title}}"
+            hint: "Drag issues up or down to change the order."
             fields:
-              - { label: "Short label (e.g. Mobility)", name: tag, widget: string }
-              - { label: Title, name: title, widget: string }
-              - { label: Text, name: text, widget: text }
+              - { label: "Tab name (one or two words)", name: tag, widget: string }
+              - { label: "Title", name: title, widget: string }
+              - { label: "Paragraph", name: text, widget: text }
               - label: "Read-more links"
                 name: links
                 widget: list
@@ -129,21 +132,46 @@ collections:
                 summary: "{{fields.label}}"
                 fields:
                   - { label: "Link text", name: label, widget: string }
-                  - { label: "Link (e.g. /coffee/ or https://...)", name: url, widget: string }
+                  - { label: "Web address", name: url, widget: string, hint: "A page on this site (like /coffee/) or a full link starting with https://" }
+      - name: community
+        label: "5. Crowd photo band"
+        file: src/_data/home/community.json
+        fields:
+          - { label: "Heading", name: heading, widget: string }
+          - { label: "Text", name: text, widget: text }
+          - { label: "Wide photo of supporters", name: photo, widget: image, choose_url: false }
+      - name: forms
+        label: "6. Sign-up and volunteer forms"
+        file: src/_data/home/forms.json
+        fields:
+          - { label: "Email sign-up heading", name: signup_heading, widget: string }
+          - { label: "Email sign-up text", name: signup_text, widget: text }
+          - { label: "Volunteer heading", name: volunteer_heading, widget: string }
+          - { label: "Volunteer text", name: volunteer_text, widget: text }
+          - { label: "Volunteer checkboxes", name: volunteer_options, widget: list, hint: "The choices people can tick (Phone Bank, Knock Doors…)." }
+      - name: donate
+        label: "7. Donate section"
+        file: src/_data/home/donate.json
+        fields:
+          - { label: "Heading", name: heading, widget: string }
+          - { label: "Text", name: text, widget: text }
+          - { label: "Italic line", name: tagline, widget: string }
+          - { label: "Amount buttons", name: amounts, widget: list, hint: "Example: $250. The donate link itself is under Site Settings." }
 
   # ---------------- OTHER PAGES ----------------
   - name: pages
     label: "📄 Other Pages"
-    label_singular: Page
-    description: "Coffee & Conversation, Internships, Business Survey, the Rays stadium plan, Privacy Policy, etc. A new page’s web address is its title (e.g. “Yard Signs” → tarynformayor.com/yard-signs/)."
+    label_singular: "Page"
+    description: "Coffee & Conversation, Internships, Business Survey, the Rays plan, and the Privacy Policy."
     folder: src/pages
     create: true
     slug: "{{slug}}"
+    editor: { preview: false }
     fields:
-      - { label: "Page title", name: title, widget: string }
-      - { label: "Page text", name: body, widget: markdown, required: false, buttons: [bold, italic, link, quote, heading-two, heading-three, bulleted-list, numbered-list], editor_components: [image] }
-      - { label: "Embedded form or map link", name: embed, widget: string, required: false, hint: "Optional. Paste an Airtable form, Google Form, or Google My Maps embed link to show it on the page." }
-      - { label: "List upcoming Coffee & Conversation events", name: show_coffee_events, widget: boolean, default: false, required: false }
+      - { label: "Page title", name: title, widget: string, hint: "For a new page, the title becomes its web address (“Yard Signs” → tarynformayor.com/yard-signs/)." }
+      - { label: "Page text", name: body, required: false, widget: markdown, modes: [rich_text], buttons: [bold, italic, link, heading-two, heading-three, bulleted-list, numbered-list], editor_components: [image] }
+      - { label: "Form or map to show on the page", name: embed, widget: string, required: false, hint: "Paste the “embed” link of an Airtable form, Google Form, or Google map." }
+      - { label: "Also list upcoming Coffee & Conversations", name: show_coffee_events, widget: boolean, default: false, required: false }
 
   # ---------------- SETTINGS ----------------
   - name: settings
@@ -151,22 +179,25 @@ collections:
     editor: { preview: false }
     files:
       - name: settings
-        label: "Donate link, contact info, social links"
+        label: "Announcement bar, donate link, contact info"
         file: src/_data/settings.json
         fields:
-          - { label: "Announcement bar (top of every page)", name: announcement, widget: string, required: false, hint: "Optional. e.g. “Early voting starts Feb 15 — find your polling place!” Leave blank to hide." }
+          - { label: "Announcement bar", name: announcement, widget: string, required: false, hint: "Optional message across the top of every page, e.g. “Early voting starts Feb 15!” Leave empty to hide it." }
           - { label: "Donate link (Anedot)", name: donate_url, widget: string }
-          - { label: "Donation amount buttons", name: donate_amounts, widget: list }
           - { label: "Phone", name: phone, widget: string }
           - { label: "Email", name: email, widget: string }
           - { label: "Mailing address", name: mailing_address, widget: string }
           - { label: "Facebook link", name: facebook, widget: string, required: false }
           - { label: "Instagram link", name: instagram, widget: string, required: false }
-          - { label: "YouTube link", name: youtube, widget: string, required: false }
-          - { label: "“Paid for by” disclaimer", name: disclaimer, widget: string, hint: "Required by Florida law. Change only if the campaign’s legal name changes." }
-          - { label: "Site name", name: site_title, widget: string }
-          - { label: "Site description (Google & sharing)", name: site_description, widget: text }
-          - { label: "Default sharing image", name: share_image, widget: image }
-          - { label: "Mailchimp form address (advanced)", name: mailchimp_form_url, widget: string }
-          - { label: "Mailchimp tag IDs (advanced)", name: mailchimp_tags, widget: string, required: false }
-          - { label: "Google Tag Manager ID (advanced)", name: google_tag_manager_id, widget: string, required: false }
+          - { label: "YouTube channel link", name: youtube, widget: string, required: false }
+          - { label: "“Paid for by” line", name: disclaimer, widget: string, hint: "Required by Florida law. Only change it if the campaign’s legal name changes." }
+          - { label: "Website name", name: site_title, widget: string }
+          - { label: "Website description (Google and sharing)", name: site_description, widget: text }
+          - { label: "Picture shown when the site is shared", name: share_image, widget: image, choose_url: false }
+      - name: advanced
+        label: "Advanced (please don’t change)"
+        file: src/_data/advanced.json
+        fields:
+          - { label: "Mailchimp form address", name: mailchimp_form_url, widget: string }
+          - { label: "Mailchimp tag numbers", name: mailchimp_tags, widget: string, required: false }
+          - { label: "Google Tag Manager ID", name: google_tag_manager_id, widget: string, required: false }

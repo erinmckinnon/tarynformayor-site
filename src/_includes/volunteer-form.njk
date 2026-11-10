@@ -13,7 +13,7 @@
   <fieldset>
     <legend>How would you like to help?</legend>
     <div class="checks">
-      {% for opt in home.volunteer_options %}
+      {% for opt in home.forms.volunteer_options %}
       <label class="check"><input type="checkbox" name="interests" value="{{ opt }}"> {{ opt }}</label>
       {% endfor %}
     </div>

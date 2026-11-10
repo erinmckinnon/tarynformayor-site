@@ -1,4 +1,4 @@
-<form class="signup-form{% if compact %} compact{% endif %}" action="{{ settings.mailchimp_form_url }}" method="post" target="_blank" data-mailchimp>
+<form class="signup-form{% if compact %} compact{% endif %}" action="{{ advanced.mailchimp_form_url }}" method="post" target="_blank" data-mailchimp>
   {% if not compact %}
   <div class="row2">
     <label>First name<input type="text" name="FNAME" autocomplete="given-name"></label>
@@ -6,7 +6,7 @@
   </div>
   {% endif %}
   <label{% if compact %} class="sr"{% endif %}><span{% if compact %} class="sr-only"{% endif %}>Email</span><input type="email" name="EMAIL" required autocomplete="email" placeholder="{% if compact %}Your email{% endif %}"></label>
-  <input type="hidden" name="tags" value="{{ settings.mailchimp_tags }}">
+  <input type="hidden" name="tags" value="{{ advanced.mailchimp_tags }}">
   <div class="hp" aria-hidden="true"><input type="text" name="b_4318fee3e4aeac3e3120696f2_67c517f337" tabindex="-1" value=""></div>
   <button class="btn {% if compact %}btn-gold{% else %}btn-plum{% endif %}" type="submit">{% if compact %}Subscribe{% else %}Stay Connected{% endif %}</button>
   <p class="form-msg" role="status" aria-live="polite"></p>

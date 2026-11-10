@@ -11,7 +11,9 @@ The campaign website. It's a fast static site hosted on Netlify. Content is edit
    - **🏠 Homepage**: headline, photos, bio, stats, issues, volunteer checkboxes.
    - **📄 Other Pages**: Coffee & Conversation, Internships, Business Survey, Rays plan, Privacy Policy.
    - **⚙️ Site Settings**: donate link, phone, email, social links, and the **announcement bar** (a gold strip across the top of every page, good for "Early voting starts…").
-3. Click **Publish** (top right). The live site updates in about a minute.
+3. Click **Publish** (top right), then **Publish now**. The live site updates in about a minute.
+
+There is a gold **❓ How do I…?** button in the bottom-left corner of the editor that opens a plain-English help page (tarynformayor.com/admin/help/).
 
 Tips
 - To take something down without deleting it, turn on **Hide this event / Hide this post**.

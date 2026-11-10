@@ -1,0 +1,38 @@
+{
+  "intro": "Urban designer, nonprofit leader, wife, and mother dedicated to building a Tampa that works for everyone.",
+  "photo": "/uploads/2026_05_Taryn-scaled.webp",
+  "photo_2": "/uploads/2026_03_tarynsabia.webp",
+  "sections": [
+    {
+      "heading": "Urban Designer, Researcher & Community Leader",
+      "text": "Taryn Sabia serves as Assistant Dean for Research at the University of South Florida’s College of Design, Art & Performance. She previously directed the Florida Center for Community Design and Research, where she led more than 40 public projects and helped secure over $4 million in sponsored research focused on creating stronger, more connected communities."
+    },
+    {
+      "heading": "Collaboration & Civic Engagement",
+      "text": "As co-founder of Urban Charrette, a Tampa-based nonprofit, Taryn has spent years bringing residents, local leaders, businesses, and institutions together to solve complex community challenges. She has facilitated more than 150 public workshops and advised over 30 mayors nationwide on urban planning, accessibility, and neighborhood development."
+    },
+    {
+      "heading": "A Personal Commitment to Tampa’s Future",
+      "text": "Born legally blind, Taryn brings a deeply personal perspective to accessibility, inclusion, and designing cities that work for everyone. She is also a wife and mother who understands the everyday challenges families face — from affordability and transportation to creating safe, connected neighborhoods where people can thrive."
+    }
+  ],
+  "quote": "Tampa deserves leadership that listens, collaborates, and plans for the future without losing sight of the people who call this city home.",
+  "stats": [
+    {
+      "number": "40+",
+      "label": "Public Projects"
+    },
+    {
+      "number": "150+",
+      "label": "Public Workshops"
+    },
+    {
+      "number": "$4M+",
+      "label": "Research Funding"
+    },
+    {
+      "number": "30+",
+      "label": "Mayors Advised"
+    }
+  ]
+}
