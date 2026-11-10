@@ -72,9 +72,13 @@
   var chips = document.querySelectorAll('.chip[data-filter]');
   function filter(cat) {
     chips.forEach(function (c) { c.classList.toggle('is-on', c.dataset.filter === cat); });
-    document.querySelectorAll('.news-grid.all .news-card').forEach(function (card) {
-      card.hidden = cat && card.dataset.cat !== cat;
+    var shown = 0;
+    document.querySelectorAll('.news-grid.all [data-cat]').forEach(function (card) {
+      card.hidden = !!cat && card.dataset.cat !== cat;
+      if (!card.hidden) shown++;
     });
+    var none = document.querySelector('[data-news-empty]');
+    if (none) none.hidden = shown > 0;
   }
   chips.forEach(function (c) { c.addEventListener('click', function () { filter(c.dataset.filter); }); });
   var q = new URLSearchParams(location.search).get('c');

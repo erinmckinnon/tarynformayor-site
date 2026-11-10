@@ -3,16 +3,55 @@ layout: base.njk
 title: News & Updates
 permalink: /news/
 ---
-<section class="page-head"><div class="wrap"><h1>News &amp; Updates</h1><p class="lede">Campaign news, press coverage, and Taryn’s work for Tampa.</p></div></section>
-<section class="section">
+{% set lead = collections.news | first %}
+<section class="news-lead">
+  <div class="hero-map" aria-hidden="true"></div>
   <div class="wrap">
-    <div class="filters" role="group" aria-label="Filter news">
-      <button class="chip is-on" data-filter="">All</button>
-      {% for c in ["Campaign", "Press Release", "In the News", "Achievement"] %}<button class="chip" data-filter="{{ c | slugify2 }}">{{ c }}</button>{% endfor %}
-    </div>
-    <div class="news-grid all">
-      {% for item in collections.news %}{% include "news-card.njk" %}{% endfor %}
-    </div>
+    <p class="news-lead-kicker">News &amp; updates</p>
+    <article class="lead-story">
+      <a class="lead-img blur-fit" href="{{ lead.url }}" style="--img: url('{{ lead.data.image }}')" tabindex="-1" aria-hidden="true">{% if lead.data.image %}<img src="{{ lead.data.image }}" alt="">{% endif %}</a>
+      <div class="lead-text">
+        <p class="news-meta light"><span class="news-cat">{{ lead.data.category }}</span> <time datetime="{{ lead.data.date | isoDay }}">{{ lead.data.date | longDate }}</time></p>
+        <h1><a href="{{ lead.url }}">{{ lead.data.title }}</a></h1>
+        {% if lead.data.summary %}<p class="lead-sum">{{ lead.data.summary }}</p>{% endif %}
+        <a class="btn btn-gold" href="{{ lead.url }}">Read the story</a>
+      </div>
+    </article>
   </div>
 </section>
-{% include "donate-band.njk" %}
+
+<section class="section news-list">
+  <div class="wrap">
+    <div class="news-list-head">
+      <h2>More stories</h2>
+      <div class="filters" role="group" aria-label="Show stories by type">
+        <button class="chip is-on" data-filter="">All</button>
+        {% for c in ["Campaign", "Press Release", "In the News", "Achievement"] %}<button class="chip" data-filter="{{ c | slugify2 }}">{{ c }}</button>{% endfor %}
+      </div>
+    </div>
+    <div class="news-grid all">
+      {% for item in collections.news %}{% if not loop.first %}
+      <article class="story" data-cat="{{ item.data.category | slugify2 }}">
+        <a class="story-img blur-fit" href="{{ item.url }}" style="--img: url('{{ item.data.image }}')" tabindex="-1" aria-hidden="true">{% if item.data.image %}<img src="{{ item.data.image }}" alt="" loading="lazy">{% endif %}</a>
+        <div class="story-text">
+          <p class="news-meta"><span class="news-cat">{{ item.data.category }}</span> <time datetime="{{ item.data.date | isoDay }}">{{ item.data.date | longDate }}</time></p>
+          <h3><a href="{{ item.url }}">{{ item.data.title }}</a></h3>
+          {% if item.data.summary %}<p class="story-sum">{{ item.data.summary }}</p>{% endif %}
+          <a class="story-more" href="{{ item.url }}" tabindex="-1">Read more</a>
+        </div>
+      </article>
+      {% endif %}{% endfor %}
+    </div>
+    <p class="empty-note" data-news-empty hidden>No stories in this category yet.</p>
+  </div>
+</section>
+
+<section class="gi-updates">
+  <div class="wrap gi-updates-inner">
+    <div>
+      <h2>Get the news first</h2>
+      <p>Campaign updates and event invitations, straight to your inbox.</p>
+    </div>
+    {% set compact = true %}{% include "signup-form.njk" %}
+  </div>
+</section>
