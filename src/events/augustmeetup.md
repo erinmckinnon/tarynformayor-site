@@ -4,6 +4,7 @@ start: "2026-08-20T18:00"
 end: "2026-08-20T19:30"
 category: "Volunteer"
 image: "/uploads/2026_07_AUGUST-VOLUNTEER-MEETUP-2.webp"
+volunteer_page: true
 ---
 
 Join Team Taryn for our **August Volunteer Meetup!**

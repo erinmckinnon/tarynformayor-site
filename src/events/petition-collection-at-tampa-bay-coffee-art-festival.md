@@ -4,6 +4,7 @@ start: "2026-10-24T10:00"
 end: "2026-10-24T13:00"
 category: "Volunteer"
 image: "/uploads/2026_10_Petition-collection-at-Tampa-Bay-festival.webp"
+volunteer_page: true
 ---
 
 ![Petition collection with Team Taryn Sabia at Tampa Bay Coffee & Art Festival on Saturday, October 24, 2026, from 10 AM to 1 PM at Florida State Fairgrounds, Tampa.](/uploads/2026_10_Petition-collection-at-Tampa-Bay-festival.webp)

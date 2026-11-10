@@ -4,6 +4,7 @@ start: "2026-10-18T15:30"
 end: "2026-10-18T18:30"
 category: "Volunteer"
 image: "/uploads/2026_10_Canvassing-volunteers-needed.webp"
+volunteer_page: true
 ---
 
 ![Volunteers needed for canvassing with Team Taryn Sabia on Sunday, October 18, 2026 at 3:30 PM. Location provided upon signup.](/uploads/2026_10_Canvassing-volunteers-needed.webp)

@@ -51,7 +51,7 @@ p { margin: 0 0 1em; }
 .btn-gold:hover { background: var(--gold-light); color: var(--night); }
 .btn-plum { background: var(--plum); color: #fff; }
 .btn-plum:hover { background: var(--night); color: #fff; }
-.btn-ghost { border-color: rgba(255,255,255,.55); color: #fff; }
+.btn-ghost { background: transparent; border-color: rgba(255,255,255,.55); color: #fff; }
 .btn-ghost:hover { background: #fff; color: var(--night); }
 .btn-small { padding: .55rem 1.2rem; font-size: .9rem; background: var(--plum); color: #fff; }
 .btn-small:hover { background: var(--night); color: #fff; }
@@ -387,7 +387,7 @@ legend { font-weight: 600; font-size: .9rem; margin-bottom: .5rem; }
 .gi-updates .signup-form.compact .form-msg { color: var(--gold-light); }
 @media (max-width: 800px) { .gi-updates-inner { grid-template-columns: 1fr; } }
 .gi-more-title { font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 1.4rem; }
-.gi-more { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.gi-more { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
 .gi-more a { display: flex; flex-direction: column; gap: .25rem; padding: 1.2rem 1.3rem; border: 1px solid var(--line); border-radius: 8px; text-decoration: none; color: var(--ink); background: #fff; transition: border-color .15s; }
 .gi-more a:hover { border-color: var(--plum); }
 .gi-more strong { color: var(--plum); font-size: 1.05rem; }
@@ -432,3 +432,10 @@ legend { font-weight: 600; font-size: .9rem; margin-bottom: .5rem; }
 .story h3 a:hover { color: var(--plum); text-decoration: underline; }
 .story-sum { color: var(--muted); font-size: .95rem; margin: 0 0 1rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .story-more { margin-top: auto; font-weight: 700; font-size: .92rem; text-decoration: none; color: var(--plum); border-bottom: 2px solid var(--gold); align-self: flex-start; }
+
+/* Volunteer page */
+.vol-head .lede { margin-bottom: 2rem; }
+.vol-head-inner { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; }
+@media (max-width: 800px) { .vol-head-inner { grid-template-columns: 1fr; } }
+.share-msg { margin: 1rem 0 0; color: var(--gold-light); font-weight: 600; min-height: 1.2em; }
+button.btn { font-family: var(--sans); }

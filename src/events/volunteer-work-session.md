@@ -4,6 +4,7 @@ start: "2026-10-20T18:30"
 end: "2026-10-20T19:30"
 category: "Volunteer"
 image: "/uploads/2026_10_Team-Taryn-Sabia-Volunteer-Session-1.webp"
+volunteer_page: true
 ---
 
 ![Volunteer Work Session with Team Taryn Sabia on Tuesday, October 20, 2026, from 6:30 to 7:30 PM.](/uploads/2026_10_Team-Taryn-Sabia-Volunteer-Session-1.webp)

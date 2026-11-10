@@ -37,6 +37,7 @@ collections:
       - { label: "2. Date and start time", name: start, widget: datetime, format: "YYYY-MM-DDTHH:mm", date_format: "MMMM D, YYYY", time_format: "h:mm A", picker_utc: false, hint: "Click the box and pick the day and time (Tampa time)." }
       - { label: "3. End time", name: end, widget: datetime, format: "YYYY-MM-DDTHH:mm", date_format: "MMMM D, YYYY", time_format: "h:mm A", picker_utc: false, required: false }
       - { label: "4. Type of event", name: category, widget: select, default: "Community", options: ["Coffee & Conversation", "Volunteer", "Fundraiser", "Community", "Election Date"], hint: "“Coffee & Conversation” events also appear on the Coffee page. “Election Date” shows in the Key Dates strip." }
+      - { label: "Show on the volunteer page", name: volunteer_page, widget: boolean, default: false, required: false, hint: "Turn on for canvasses, phone banks, petition shifts, and anything volunteers should see at tarynformayor.com/volunteer" }
       - { label: "5. Place name", name: location, widget: string, required: false, hint: "Example: Buddy Brew (Bay to Bay)" }
       - { label: "6. Street address", name: address, widget: string, required: false }
       - { label: "7. RSVP or ticket link", name: rsvp_link, widget: string, required: false, hint: "Copy the link from Anedot or Mobilize and paste it here. Leave empty if people don’t need to RSVP." }

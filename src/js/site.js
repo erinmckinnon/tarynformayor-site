@@ -37,6 +37,21 @@
     });
   });
 
+  // Volunteer page: "Sign up for this shift" fills in the note; "Share this page" copies the link
+  document.querySelectorAll('[data-shift]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var notes = document.querySelector('[data-volunteer] textarea[name=notes]');
+      if (notes) notes.value = 'I want to sign up for: ' + a.dataset.shift;
+    });
+  });
+  document.querySelectorAll('[data-share]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var url = location.origin + location.pathname, msg = document.querySelector('.share-msg');
+      if (navigator.share) { navigator.share({ title: document.title, url: url }).catch(function () {}); return; }
+      navigator.clipboard.writeText(url).then(function () { if (msg) msg.textContent = 'Link copied: ' + url; });
+    });
+  });
+
   // Video: load YouTube only when someone presses play
   document.querySelectorAll('.yt').forEach(function (box) {
     box.addEventListener('click', function () {

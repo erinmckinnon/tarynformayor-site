@@ -4,6 +4,7 @@ start: "2026-10-24T07:00"
 end: "2026-10-24T10:00"
 category: "Volunteer"
 image: "/uploads/2026_10_Team-Taryn-Sabia-petition-collection.webp"
+volunteer_page: true
 ---
 
 ![Petition collection with Team Taryn Sabia at Making Strides Against Breast Cancer on Saturday, October 24, 2026, from 7 to 10 AM.](/uploads/2026_10_Team-Taryn-Sabia-petition-collection.webp)

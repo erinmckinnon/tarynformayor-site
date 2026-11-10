@@ -4,6 +4,7 @@ start: "2026-10-24T16:00"
 end: "2026-10-24T19:00"
 category: "Volunteer"
 image: "/uploads/2026_10_Petition-Collection-at-Tampa-Riverwalk-2.webp"
+volunteer_page: true
 ---
 
 ![Petition collection with Team Taryn Sabia at Tampa Riverwalk Trick or Treat on Saturday, October 24, 2026, from 4 to 7 PM at Cotanchobee Fort Brooke Park.](/uploads/2026_10_Petition-Collection-at-Tampa-Riverwalk-2.webp)

@@ -4,6 +4,7 @@ start: "2026-10-24T14:00"
 end: "2026-10-24T17:00"
 category: "Volunteer"
 image: "/uploads/2026_10_Taste-of-Africa-Petition-Collection.webp"
+volunteer_page: true
 ---
 
 ![Petition collection with Team Taryn Sabia at Taste of Africa Music & Food Festival on Saturday, October 24, 2026, from 2 to 5 PM.](/uploads/2026_10_Taste-of-Africa-Petition-Collection.webp)

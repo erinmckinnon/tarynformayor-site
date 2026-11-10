@@ -3,6 +3,7 @@ title: "Micro Canvass"
 start: "2026-08-04T18:00"
 end: "2026-08-04T19:30"
 category: "Volunteer"
+volunteer_page: true
 ---
 
 Knock Doors. Make a Difference.
