@@ -57,7 +57,7 @@ p { margin: 0 0 1em; }
 .btn-small:hover { background: var(--night); color: #fff; }
 
 /* Header */
-.announce { background: var(--gold); color: var(--night); text-align: center; padding: .55rem 1rem; font-weight: 600; font-size: .95rem; }
+.announce { background: var(--night); color: var(--gold-light); text-align: center; padding: .55rem 1rem; font-weight: 600; font-size: .95rem; }
 .site-header { position: sticky; top: 0; z-index: 50; background: rgba(255,253,249,.96); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
 .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 78px; }
 .logo img { width: 210px; }
@@ -108,19 +108,19 @@ p { margin: 0 0 1em; }
 }
 
 /* Key dates */
-.key-dates { background: var(--gold); color: var(--night); }
+.key-dates { background: var(--cream); color: var(--ink); border-top: 4px solid var(--gold); border-bottom: 1px solid var(--line); }
 .kd-inner { display: flex; align-items: center; gap: 2rem; padding: 1.15rem 0; }
-.key-dates h2 { font: 700 1rem var(--sans); letter-spacing: 0; color: var(--night); margin: 0; white-space: nowrap; }
+.key-dates h2 { font: 700 1rem var(--sans); letter-spacing: 0; color: var(--plum); margin: 0; white-space: nowrap; }
 .kd-list { list-style: none; margin: 0; padding: 0; display: flex; flex: 1; }
-.kd { flex: 1; border-left: 1px solid rgba(35,20,43,.25); }
-.kd a { display: block; padding: .2rem 1.5rem; text-decoration: none; color: var(--night); }
+.kd { flex: 1; border-left: 1px solid var(--line); }
+.kd a { display: block; padding: .2rem 1.5rem; text-decoration: none; color: var(--ink); }
 .kd a:hover .kd-name { text-decoration: underline; }
-.kd-date { display: block; font: 600 1.45rem/1.2 var(--serif); }
-.kd-name { font-size: .92rem; }
+.kd-date { display: block; font: 600 1.45rem/1.2 var(--serif); color: var(--plum); }
+.kd-name { font-size: .95rem; color: #4a4050; }
 @media (max-width: 760px) {
   .kd-inner { flex-direction: column; align-items: stretch; gap: .5rem; padding: 1.3rem 0; }
   .kd-list { flex-direction: column; }
-  .kd { border-left: 0; border-top: 1px solid rgba(35,20,43,.2); }
+  .kd { border-left: 0; border-top: 1px solid var(--line); }
   .kd a { display: flex; align-items: baseline; gap: 1rem; padding: .6rem 0; }
   .kd-date { min-width: 4.6rem; font-size: 1.2rem; }
 }
@@ -223,16 +223,16 @@ legend { font-weight: 600; font-size: .9rem; margin-bottom: .5rem; }
 .signup-form.compact .form-msg { flex-basis: 100%; color: var(--gold-light); }
 
 /* Donate */
-.donate-band { background: var(--gold); color: var(--night); padding: clamp(4rem, 8vw, 6rem) 0; }
-.donate-band h2 { color: var(--night); max-width: 12ch; }
-.donate-band p { font-size: 1.1rem; max-width: 32rem; }
+.donate-band { position: relative; isolation: isolate; overflow: hidden; background: var(--plum); color: #fff; padding: clamp(4rem, 8vw, 6rem) 0; }
+.donate-band h2 { color: #fff; max-width: 12ch; }
+.donate-band p { font-size: 1.1rem; max-width: 32rem; color: #ece3f1; }
 .donate-inner { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; }
-.tagline { font: italic 500 1.2rem var(--serif); margin: 0; }
+.donate-band .tagline { font: italic 500 1.2rem var(--serif); margin: 0; color: var(--gold-light); }
 .amounts { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
-.amount { display: block; text-align: center; padding: 1.4rem .5rem; border-radius: 6px; background: var(--night); color: #fff; font: 600 1.8rem/1 var(--serif); text-decoration: none; transition: background .15s, transform .15s; }
-.amount:hover { background: var(--plum); color: #fff; transform: translateY(-2px); }
-.amount.other { grid-column: 1 / -1; background: transparent; color: var(--night); border: 2px solid var(--night); font: 700 1rem/1 var(--sans); padding: 1.1rem; }
-.amount.other:hover { background: var(--night); color: #fff; }
+.amount { display: block; text-align: center; padding: 1.4rem .5rem; border-radius: 6px; background: var(--gold); color: var(--night); font: 600 1.8rem/1 var(--serif); text-decoration: none; transition: background .15s, transform .15s; }
+.amount:hover { background: var(--gold-light); color: var(--night); transform: translateY(-2px); }
+.amount.other { grid-column: 1 / -1; background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.6); font: 700 1rem/1 var(--sans); padding: 1.1rem; }
+.amount.other:hover { background: #fff; color: var(--night); }
 @media (max-width: 800px) { .donate-inner { grid-template-columns: 1fr; } }
 
 /* News */
