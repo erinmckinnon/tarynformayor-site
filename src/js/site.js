@@ -9,11 +9,22 @@
     nav.addEventListener('click', function (e) { if (e.target.tagName === 'A') nav.classList.remove('open'); });
   }
 
+  // Video: load YouTube only when someone presses play
+  document.querySelectorAll('.yt').forEach(function (box) {
+    box.addEventListener('click', function () {
+      if (box.querySelector('iframe')) return;
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + box.dataset.yt + '?autoplay=1&rel=0';
+      f.allow = 'autoplay; encrypted-media; picture-in-picture'; f.allowFullscreen = true; f.title = 'Video';
+      box.appendChild(f);
+    });
+  });
+
   // Hide events that ended before today (Tampa time), so the site never shows stale events between rebuilds.
   var today = new Intl.DateTimeFormat('sv-SE', { timeZone: 'America/New_York' }).format(new Date());
   document.querySelectorAll('[data-hide-past]').forEach(function (list) {
     var shown = 0, limit = +list.dataset.limit || 0;
-    list.querySelectorAll('.event-card').forEach(function (c) {
+    list.querySelectorAll(':scope > [data-end]').forEach(function (c) {
       if (c.dataset.end < today || (limit && shown >= limit)) c.remove(); else shown++;
     });
     var empty = list.parentNode.querySelector('.empty-note');

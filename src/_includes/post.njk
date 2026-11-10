@@ -10,7 +10,7 @@ layout: base.njk
   {% if image %}<figure class="wrap narrow article-img"><img src="{{ image }}" alt=""></figure>{% endif %}
   <div class="wrap narrow prose">
     {{ content | safe }}
-    {% if external_link %}<p><a class="btn btn-plum" href="{{ external_link }}" target="_blank" rel="noopener">Read the full story →</a></p>{% endif %}
+    {% if external_link %}<p><a class="btn btn-plum" href="{{ external_link }}" target="_blank" rel="noopener">Read the full story</a></p>{% endif %}
   </div>
 </article>
 {% include "donate-band.njk" %}

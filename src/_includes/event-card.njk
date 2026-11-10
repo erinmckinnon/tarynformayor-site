@@ -1,9 +1,8 @@
 <article class="event-card" data-end="{{ (ev.data.end or ev.data.start) | isoDay }}">
-  <div class="date-chip"><span>{{ ev.data.start | eventMonth }}</span><strong>{{ ev.data.start | eventDate }}</strong></div>
+  <div class="date-chip" aria-hidden="true"><span>{{ ev.data.start | eventMonth }}</span><strong>{{ ev.data.start | eventDate }}</strong></div>
   <div class="event-body">
-    <p class="event-cat">{{ ev.data.category }}</p>
     <h3><a href="{{ ev.url }}">{{ ev.data.title }}</a></h3>
-    <p class="event-meta">{{ ev.data.start | eventDay }} · {{ ev.data.start | eventTime(ev.data.end) }}{% if ev.data.location %}<br>{{ ev.data.location }}{% endif %}</p>
+    <p class="event-meta"><span class="event-cat">{{ ev.data.category }}</span> {{ ev.data.start | eventDay }}, {{ ev.data.start | eventTime(ev.data.end) }}{% if ev.data.location %}<br>{{ ev.data.location }}{% endif %}</p>
   </div>
-  <a class="event-link" href="{% if ev.data.rsvp_link %}{{ ev.data.rsvp_link }}{% else %}{{ ev.url }}{% endif %}"{% if ev.data.rsvp_link %} target="_blank" rel="noopener"{% endif %}>{% if ev.data.rsvp_link %}RSVP →{% else %}Details →{% endif %}</a>
+  {% if ev.data.rsvp_link %}<a class="btn btn-small" href="{{ ev.data.rsvp_link }}" target="_blank" rel="noopener">RSVP</a>{% endif %}
 </article>

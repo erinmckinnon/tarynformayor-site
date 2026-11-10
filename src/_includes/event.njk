@@ -9,7 +9,7 @@ layout: base.njk
       <li><strong>When:</strong> {{ start | eventDay }}, {{ start | eventTime(end) }}</li>
       {% if location or address %}<li><strong>Where:</strong> {{ location }}{% if location and address %}, {% endif %}{{ address }}{% if address or location %} · <a href="https://www.google.com/maps/search/?api=1&query={{ (location + ' ' + address + ' Tampa FL') | urlencode }}" target="_blank" rel="noopener">Map</a>{% endif %}</li>{% endif %}
     </ul>
-    <p class="past-note" hidden data-end="{{ (end or start) | isoDay }}">This event has already happened. <a href="/events/">See upcoming events →</a></p>
+    <p class="past-note" hidden data-end="{{ (end or start) | isoDay }}">This event has already happened. <a href="/events/">See upcoming events</a></p>
     {% if rsvp_link %}<p><a class="btn btn-gold" href="{{ rsvp_link }}" target="_blank" rel="noopener">RSVP / Get Tickets</a></p>{% endif %}
   </header>
   {% if image %}<figure class="wrap narrow article-img"><img src="{{ image }}" alt="{{ title }}"></figure>{% endif %}

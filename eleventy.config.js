@@ -38,6 +38,7 @@ export default function (eleventyConfig) {
     const now = nowTampa();
     return events.filter((e) => String(e.data.end || e.data.start).slice(0, 16) < now.slice(0, 10)).reverse();
   });
+  eleventyConfig.addFilter("notCategory", (items, cat) => items.filter((e) => e.data.category !== cat));
   eleventyConfig.addFilter("inCategory", (items, cat) => items.filter((e) => e.data.category === cat));
   eleventyConfig.addFilter("longDate", (v) => { const p = parts(toDate(v)); return p ? `${MONTHS[p.mo - 1]} ${p.d}, ${p.y}` : ""; });
   eleventyConfig.addFilter("eventDay", (v) => { const p = parts(v); return p ? `${DAYS[p.dow]}, ${MONTHS[p.mo - 1]} ${p.d}, ${p.y}` : ""; });

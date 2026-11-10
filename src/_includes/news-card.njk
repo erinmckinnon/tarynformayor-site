@@ -1,9 +1,10 @@
-<article class="news-card" data-cat="{{ item.data.category | slugify2 }}">
+<article class="news-card{% if featured %} is-featured{% endif %}" data-cat="{{ item.data.category | slugify2 }}">
   <a href="{{ item.url }}" class="news-img" tabindex="-1" aria-hidden="true">
     {% if item.data.image %}<img src="{{ item.data.image }}" alt="" loading="lazy">{% else %}<span class="news-ph"></span>{% endif %}
   </a>
   <div class="news-text">
-    <p class="news-cat">{{ item.data.category }} · {{ item.data.date | longDate }}</p>
+    <p class="news-meta"><span class="news-cat">{{ item.data.category }}</span> <time datetime="{{ item.data.date | isoDay }}">{{ item.data.date | longDate }}</time></p>
     <h3><a href="{{ item.url }}">{{ item.data.title }}</a></h3>
+    {% if featured and item.data.summary %}<p class="news-sum">{{ item.data.summary }}</p>{% endif %}
   </div>
 </article>
