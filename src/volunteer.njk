@@ -8,21 +8,21 @@ summary: Upcoming volunteer shifts with Team Taryn — canvassing, phone banks, 
 <section class="page-head vol-head">
   <div class="wrap vol-head-inner">
     <div>
-      <h1>Volunteer with Team Taryn</h1>
-      <p class="lede">Every upcoming volunteer shift in one place. Pick one that fits your schedule and sign up. No experience needed — we’ll train you.</p>
+      <h1>{{ volunteer.heading }}</h1>
+      <p class="lede">{{ volunteer.intro }}</p>
       <div class="hero-btns">
         <a class="btn btn-gold" href="#shifts">See upcoming shifts</a>
         <button class="btn btn-ghost" type="button" data-share>Share this page</button>
       </div>
       <p class="share-msg" role="status" aria-live="polite"></p>
     </div>
-    <img class="ev-head-photo" src="/uploads/2026_03_FotoBoho_110-1-scaled.webp" alt="Team Taryn supporters at the campaign kickoff" loading="eager">
+    <img class="ev-head-photo" src="{{ volunteer.photo }}" alt="Team Taryn supporters at the campaign kickoff" loading="eager">
   </div>
 </section>
 
 <section class="section" id="shifts">
   <div class="wrap">
-    <div class="section-head"><h2>Upcoming shifts</h2></div>
+    <div class="section-head"><h2>{{ volunteer.shifts_heading }}</h2></div>
     <div class="ev-grid" data-hide-past>
       {% for ev in shifts %}
       <article class="ev-tile{% if not ev.data.image %} no-img{% endif %}" data-end="{{ (ev.data.end or ev.data.start) | isoDay }}">
@@ -41,8 +41,8 @@ summary: Upcoming volunteer shifts with Team Taryn — canvassing, phone banks, 
     </div>
     <div class="ev-empty"{% if shifts.length %} hidden{% endif %}>
       <div>
-        <h3>No shifts posted right now</h3>
-        <p>Join the volunteer list below and we’ll reach out as soon as the next one is scheduled.</p>
+        <h3>{{ volunteer.no_shifts_heading }}</h3>
+        <p>{{ volunteer.no_shifts_text }}</p>
       </div>
       <a class="btn btn-plum" href="#signup">Join the volunteer list</a>
     </div>
@@ -52,8 +52,8 @@ summary: Upcoming volunteer shifts with Team Taryn — canvassing, phone banks, 
 <section class="section gi-volunteer" id="signup">
   <div class="wrap narrow">
     <div class="form-card">
-      <h2>Sign up to volunteer</h2>
-      <p>Tell us which shift you want (or just that you’d like to help) and someone from Team Taryn will be in touch with the details.</p>
+      <h2>{{ volunteer.form_heading }}</h2>
+      <p>{{ volunteer.form_text }}</p>
       {% include "volunteer-form.njk" %}
     </div>
   </div>

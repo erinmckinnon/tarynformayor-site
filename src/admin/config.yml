@@ -32,6 +32,8 @@ collections:
       - { field: title, label: "Name" }
     summary: "{{start | date('ddd, MMM D, YYYY')}}  ·  {{title}}"
     view_groups: [{ label: "Type of event", field: category }]
+    view_filters:
+      - { label: "Volunteer page shifts only", field: volunteer_page, pattern: true }
     fields:
       - { label: "1. Event name", name: title, widget: string, hint: "Example: Coffee & Conversation @ Buddy Brew" }
       - { label: "2. Date and start time", name: start, widget: datetime, format: "YYYY-MM-DDTHH:mm", date_format: "MMMM D, YYYY", time_format: "h:mm A", picker_utc: false, hint: "Click the box and pick the day and time (Tampa time)." }
@@ -158,6 +160,25 @@ collections:
           - { label: "Text", name: text, widget: text }
           - { label: "Italic line", name: tagline, widget: string }
           - { label: "Amount buttons", name: amounts, widget: list, hint: "Example: $250. The donate link itself is under Site Settings." }
+
+  # ---------------- VOLUNTEER PAGE ----------------
+  - name: volunteer
+    label: "🙋 Volunteer Page"
+    description: "The page to send volunteers: tarynformayor.com/volunteer. Shifts appear there automatically — just turn on “Show on the volunteer page” when you add an event."
+    editor: { preview: false }
+    files:
+      - name: volunteer
+        label: "Volunteer page words and photo"
+        file: src/_data/volunteer.json
+        fields:
+          - { label: "Big heading", name: heading, widget: string }
+          - { label: "Intro text", name: intro, widget: text }
+          - { label: "Photo", name: photo, widget: image, choose_url: false }
+          - { label: "Heading above the shifts", name: shifts_heading, widget: string }
+          - { label: "Heading when there are no shifts", name: no_shifts_heading, widget: string }
+          - { label: "Text when there are no shifts", name: no_shifts_text, widget: text }
+          - { label: "Sign-up form heading", name: form_heading, widget: string }
+          - { label: "Sign-up form text", name: form_text, widget: text }
 
   # ---------------- OTHER PAGES ----------------
   - name: pages
