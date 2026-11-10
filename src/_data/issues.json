@@ -1,0 +1,85 @@
+{
+  "issues": [
+    {
+      "tag": "Affordability",
+      "title": "Lower the Cost of Living",
+      "text": "Taryn will pursue coordinated housing and transportation strategies that reduce everyday costs, expand diverse housing options, and ensure growth happens in the right places to support long-term affordability.",
+      "links": [
+        {
+          "label": "ADUs and housing options",
+          "url": "/more-in-law-suites-more-housing-what-floridas-adu-bill-could-mean-for-communities/"
+        }
+      ]
+    },
+    {
+      "tag": "Mobility",
+      "title": "Build Real Transportation Options",
+      "text": "Taryn will advocate for meaningful transit, safer streets, and walkable communities to lower transportation costs, reduce congestion, and improve daily quality of life across Tampa’s neighborhoods.",
+      "links": [
+        {
+          "label": "The future of mobility",
+          "url": "/business-of-transportation-qa-on-the-future-of-mobility-in-tampa-bay-2/"
+        }
+      ]
+    },
+    {
+      "tag": "Local Economy",
+      "title": "Support Local Businesses",
+      "text": "Taryn will streamline permitting, improve transparency, and expand technical support so small businesses can open faster, grow sustainably, and continue to strengthen Tampa’s local economy.",
+      "links": [
+        {
+          "label": "Take the Tampa Business Survey",
+          "url": "/tampa-business-survey/"
+        }
+      ]
+    },
+    {
+      "tag": "Resilience",
+      "title": "Plan a Resilient Tampa",
+      "text": "Taryn will advance data-driven planning that addresses climate risk, flood resilience, and infrastructure needs while protecting neighborhood character and keeping community voices central in decision-making.",
+      "links": [
+        {
+          "label": "Heat resilience",
+          "url": "/leading-research-into-a-more-resilient-tampa/"
+        },
+        {
+          "label": "Equitable flood planning",
+          "url": "/study-shows-increasing-flood-risk-will-disproportionately-impact-some-communities/"
+        },
+        {
+          "label": "Hurricane preparedness",
+          "url": "/usf-forum-brings-regional-leaders-together-to-evaluate-hurricane-preparedness-and-recovery/"
+        },
+        {
+          "label": "Shade and public health",
+          "url": "/more-cities-address-shade-deserts-as-extreme-heat-triggers-health-issues/"
+        }
+      ]
+    },
+    {
+      "tag": "Opportunity",
+      "title": "Advance Educational Partnerships",
+      "text": "Taryn will strengthen partnerships with local schools, colleges, and training programs to support workforce development, neighborhood stability, and expanded opportunities for residents across Tampa.",
+      "links": []
+    },
+    {
+      "tag": "Civic Life",
+      "title": "Engage the Community",
+      "text": "Taryn will work directly with residents, business owners, and community leaders to co-create programs that reflect real needs, maximize impact, and ensure policies are shaped by the people they serve.",
+      "links": [
+        {
+          "label": "Community-led change",
+          "url": "/building-tampa-takes-all-of-us/"
+        },
+        {
+          "label": "Community ideas in action",
+          "url": "/coming-up-green/"
+        },
+        {
+          "label": "Coffee and Conversation",
+          "url": "/coffee/"
+        }
+      ]
+    }
+  ]
+}

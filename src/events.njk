@@ -1,0 +1,22 @@
+---
+layout: base.njk
+title: Events
+permalink: /events/
+---
+{% set up = collections.events | upcoming %}
+{% set past = collections.events | past %}
+<section class="page-head"><div class="wrap"><h1>Events</h1><p class="lede">Coffee &amp; Conversations, canvasses, community events, and key election dates.</p></div></section>
+<section class="section">
+  <div class="wrap">
+    <h2>Upcoming</h2>
+    <div class="event-list" data-hide-past>
+      {% for ev in up %}{% include "event-card.njk" %}{% endfor %}
+    </div>
+    <p class="empty-note"{% if up.length %} hidden{% endif %}>New events are on the way — check back soon.</p>
+    <details class="past-events">
+      <summary>Past events ({{ past.length }})</summary>
+      <div class="event-list">{% for ev in past %}{% include "event-card.njk" %}{% endfor %}</div>
+    </details>
+  </div>
+</section>
+{% include "donate-band.njk" %}

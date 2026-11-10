@@ -1,0 +1,35 @@
+---
+layout: base.njk
+title: Get Involved
+permalink: /get-involved/
+---
+<section class="page-head"><div class="wrap"><p class="eyebrow light">Join Team Taryn</p><h1>Help Build a Better Tampa</h1><p class="lede">This campaign is powered by people who believe Tampa’s future should include everyone.</p></div></section>
+<section class="section">
+  <div class="wrap two-col">
+    <div id="volunteer">
+      <h2>{{ home.volunteer_heading }}</h2>
+      <p>Tell us how you would like to get involved and a member of Team Taryn will be in touch.</p>
+      {% include "volunteer-form.njk" %}
+    </div>
+    <div>
+      <h2>{{ home.connect_heading }}</h2>
+      <p>{{ home.connect_text }}</p>
+      {% set compact = false %}{% include "signup-form.njk" %}
+      <div class="more-ways">
+        <h3>More ways to help</h3>
+        <ul>
+          <li><a href="/help-put-taryn-on-the-ballot/">Help put Taryn on the ballot</a></li>
+          <li><a href="/coffee/">Come to a Coffee &amp; Conversation</a></li>
+          <li><a href="/internship/">Apply for a campaign internship</a></li>
+          <li><a href="/tampa-business-survey/">Take the Tampa Business Survey</a></li>
+          <li><a href="{{ settings.donate_url }}" target="_blank" rel="noopener">Make a contribution</a></li>
+        </ul>
+      </div>
+      <div class="more-ways" id="contact">
+        <h3>Contact the campaign</h3>
+        <p><a href="mailto:{{ settings.email }}">{{ settings.email }}</a><br>{{ settings.phone }}<br>{{ settings.mailing_address }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+{% include "donate-band.njk" %}

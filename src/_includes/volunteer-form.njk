@@ -1,0 +1,24 @@
+<form class="volunteer-form" name="volunteer" method="POST" data-netlify="true" netlify-honeypot="bot-field" data-volunteer>
+  <input type="hidden" name="form-name" value="volunteer">
+  <p class="hp" aria-hidden="true"><label>Leave blank <input name="bot-field" tabindex="-1"></label></p>
+  <div class="row2">
+    <label>First name *<input type="text" name="first_name" required autocomplete="given-name"></label>
+    <label>Last name *<input type="text" name="last_name" required autocomplete="family-name"></label>
+  </div>
+  <div class="row2">
+    <label>Email *<input type="email" name="email" required autocomplete="email"></label>
+    <label>Phone<input type="tel" name="phone" autocomplete="tel"></label>
+  </div>
+  <label>ZIP code<input type="text" name="zip" inputmode="numeric" autocomplete="postal-code" maxlength="10"></label>
+  <fieldset>
+    <legend>How would you like to help?</legend>
+    <div class="checks">
+      {% for opt in home.volunteer_options %}
+      <label class="check"><input type="checkbox" name="interests" value="{{ opt }}"> {{ opt }}</label>
+      {% endfor %}
+    </div>
+  </fieldset>
+  <label>Anything else? (optional)<textarea name="notes" rows="3"></textarea></label>
+  <button class="btn btn-plum" type="submit">Count Me In</button>
+  <p class="form-msg" role="status" aria-live="polite"></p>
+</form>

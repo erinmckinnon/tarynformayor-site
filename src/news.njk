@@ -1,0 +1,18 @@
+---
+layout: base.njk
+title: News & Updates
+permalink: /news/
+---
+<section class="page-head"><div class="wrap"><h1>News &amp; Updates</h1><p class="lede">Campaign news, press coverage, and Taryn’s work for Tampa.</p></div></section>
+<section class="section">
+  <div class="wrap">
+    <div class="filters" role="group" aria-label="Filter news">
+      <button class="chip is-on" data-filter="">All</button>
+      {% for c in ["Campaign", "Press Release", "In the News", "Achievement"] %}<button class="chip" data-filter="{{ c | slugify2 }}">{{ c }}</button>{% endfor %}
+    </div>
+    <div class="news-grid all">
+      {% for item in collections.news %}{% include "news-card.njk" %}{% endfor %}
+    </div>
+  </div>
+</section>
+{% include "donate-band.njk" %}

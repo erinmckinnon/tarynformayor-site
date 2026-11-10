@@ -1,0 +1,21 @@
+---
+layout: base.njk
+---
+<article class="article">
+  <header class="article-head wrap narrow"><h1>{{ title }}</h1></header>
+  <div class="wrap narrow prose">
+    {{ content | safe }}
+    {% if embed %}<div class="embed{% if 'airtable' in embed or 'forms' in embed %} tall{% endif %}"><iframe src="{{ embed }}" loading="lazy" title="{{ title }}" allowfullscreen></iframe></div>{% endif %}
+  </div>
+  {% if show_coffee_events %}
+  {% set coffee = collections.events | inCategory("Coffee & Conversation") | upcoming %}
+  <section class="wrap narrow" id="upcoming-coffee">
+    <h2>Upcoming Coffee &amp; Conversations</h2>
+    <div class="event-list" data-hide-past>
+      {% for ev in coffee %}{% include "event-card.njk" %}{% endfor %}
+    </div>
+    <p class="empty-note"{% if coffee.length %} hidden{% endif %}>More Coffee &amp; Conversation dates are coming soon. Check back for the next stop!</p>
+  </section>
+  {% endif %}
+</article>
+{% include "donate-band.njk" %}

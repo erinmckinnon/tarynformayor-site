@@ -1,0 +1,168 @@
+# Editor for TarynforMayor.com — volunteers log in at tarynformayor.com/admin
+backend:
+  name: git-gateway
+  branch: main
+  commit_messages:
+    create: 'Add {{collection}} “{{slug}}” (via website editor)'
+    update: 'Update {{collection}} “{{slug}}” (via website editor)'
+    delete: 'Delete {{collection}} “{{slug}}” (via website editor)'
+
+site_url: https://tarynformayor.com
+display_url: https://tarynformayor.com
+logo_url: /uploads/2026_03_PNG-FILE-2-e1773247885725.png
+media_folder: src/uploads
+public_folder: /uploads
+publish_mode: simple
+locale: en
+
+collections:
+  # ---------------- EVENTS ----------------
+  - name: events
+    label: "📅 Events"
+    label_singular: Event
+    description: "Add a new event with the button at the top right. Past events move off the homepage automatically."
+    folder: src/events
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    sortable_fields: ['start', 'title']
+    summary: "{{title}} — {{start | date('MMM D, YYYY h:mm A')}}"
+    view_groups: [{ label: Type, field: category }]
+    fields:
+      - { label: "Event name", name: title, widget: string }
+      - { label: "Starts", name: start, widget: datetime, format: "YYYY-MM-DDTHH:mm", date_format: "MMM D, YYYY", time_format: "h:mm A", picker_utc: false, hint: "Tampa time" }
+      - { label: "Ends", name: end, widget: datetime, format: "YYYY-MM-DDTHH:mm", date_format: "MMM D, YYYY", time_format: "h:mm A", picker_utc: false, required: false, hint: "Optional" }
+      - { label: "Type of event", name: category, widget: select, default: "Community", options: ["Coffee & Conversation", "Volunteer", "Fundraiser", "Community", "Election Date"], hint: "“Coffee & Conversation” events also show on the Coffee page." }
+      - { label: "Place name", name: location, widget: string, required: false, hint: "e.g. Buddy Brew (Bay to Bay)" }
+      - { label: "Street address", name: address, widget: string, required: false }
+      - { label: "RSVP / ticket link", name: rsvp_link, widget: string, required: false, hint: "Paste an Anedot, Eventbrite, or Mobilize link. Leave blank if no RSVP." }
+      - { label: "Flyer or photo", name: image, widget: image, required: false, choose_url: false }
+      - { label: "Description", name: body, widget: markdown, required: false, buttons: [bold, italic, link, heading-two, heading-three, bulleted-list, numbered-list], editor_components: [image] }
+      - { label: "Hide this event", name: draft, widget: boolean, default: false, required: false, hint: "Turn on to hide it from the website without deleting it." }
+
+  # ---------------- NEWS ----------------
+  - name: news
+    label: "📰 News & Updates"
+    label_singular: "News post"
+    description: "Campaign updates, press releases, and press coverage. Newest posts show first."
+    folder: src/news
+    create: true
+    slug: "{{slug}}"
+    sortable_fields: ['date', 'title']
+    summary: "{{title}} — {{date | date('MMM D, YYYY')}}"
+    view_groups: [{ label: Category, field: category }]
+    fields:
+      - { label: "Headline", name: title, widget: string }
+      - { label: "Date", name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "MMM D, YYYY", time_format: false, picker_utc: true }
+      - { label: "Category", name: category, widget: select, default: "Campaign", options: ["Campaign", "Press Release", "In the News", "Achievement"] }
+      - { label: "Main image", name: image, widget: image, required: false, choose_url: false, hint: "Square images look best (e.g. 1080×1080)." }
+      - { label: "One-sentence summary", name: summary, widget: text, required: false, hint: "Shown when the post is shared on Facebook, etc." }
+      - { label: "Link to outside article", name: external_link, widget: string, required: false, hint: "For press coverage: paste the newspaper’s link and a “Read the full story” button will appear." }
+      - { label: "Story", name: body, widget: markdown, buttons: [bold, italic, link, quote, heading-two, heading-three, bulleted-list, numbered-list], editor_components: [image] }
+      - { label: "Hide this post", name: draft, widget: boolean, default: false, required: false }
+
+  # ---------------- HOMEPAGE ----------------
+  - name: homepage
+    label: "🏠 Homepage"
+    editor: { preview: false }
+    files:
+      - name: home
+        label: "Homepage text & photos"
+        file: src/_data/home.json
+        fields:
+          - { label: "Small text above headline", name: hero_eyebrow, widget: string }
+          - { label: "Big headline", name: hero_headline, widget: string }
+          - { label: "Top photo of Taryn", name: hero_image, widget: image, hint: "A cut-out (transparent background) photo works best." }
+          - { label: "Top button text", name: hero_button_text, widget: string }
+          - { label: "Video section heading", name: video_heading, widget: string }
+          - { label: "Video section text", name: video_text, widget: text }
+          - { label: "YouTube video link", name: youtube_video_id, widget: string, required: false, hint: "Paste the YouTube link. Leave blank to hide the video section." }
+          - { label: "Donate section heading", name: donate_heading, widget: string }
+          - { label: "Donate section text", name: donate_text, widget: text }
+          - { label: "Donate tagline", name: donate_tagline, widget: string }
+          - { label: "Bio — intro line", name: bio_intro, widget: text }
+          - { label: "Bio — photo", name: bio_photo, widget: image }
+          - label: "Bio — sections"
+            name: bio_sections
+            widget: list
+            summary: "{{fields.heading}}"
+            fields:
+              - { label: Heading, name: heading, widget: string }
+              - { label: Text, name: text, widget: text }
+          - { label: "Quote", name: quote, widget: text }
+          - label: "Numbers (e.g. 40+ Public Projects)"
+            name: stats
+            widget: list
+            summary: "{{fields.number}} {{fields.label}}"
+            fields:
+              - { label: Number, name: number, widget: string }
+              - { label: Label, name: label, widget: string }
+          - { label: "Big purple statement", name: mission_statement, widget: text }
+          - { label: "Issues — intro text", name: issues_intro, widget: text }
+          - { label: "Email signup heading", name: connect_heading, widget: string }
+          - { label: "Email signup text", name: connect_text, widget: text }
+          - { label: "Volunteer heading", name: volunteer_heading, widget: string }
+          - { label: "Volunteer text", name: volunteer_text, widget: text }
+          - { label: "Volunteer checkboxes", name: volunteer_options, widget: list, hint: "The choices people can tick on the volunteer form." }
+          - { label: "Closing section heading", name: closing_heading, widget: string }
+          - { label: "Closing section text", name: closing_text, widget: text }
+      - name: issues
+        label: "Issues / Priorities"
+        file: src/_data/issues.json
+        fields:
+          - label: Issues
+            name: issues
+            widget: list
+            summary: "{{fields.tag}} — {{fields.title}}"
+            hint: "Drag to reorder."
+            fields:
+              - { label: "Short label (e.g. Mobility)", name: tag, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Text, name: text, widget: text }
+              - label: "Read-more links"
+                name: links
+                widget: list
+                required: false
+                summary: "{{fields.label}}"
+                fields:
+                  - { label: "Link text", name: label, widget: string }
+                  - { label: "Link (e.g. /coffee/ or https://...)", name: url, widget: string }
+
+  # ---------------- OTHER PAGES ----------------
+  - name: pages
+    label: "📄 Other Pages"
+    label_singular: Page
+    description: "Coffee & Conversation, Internships, Business Survey, the Rays stadium plan, Privacy Policy, etc. A new page’s web address is its title (e.g. “Yard Signs” → tarynformayor.com/yard-signs/)."
+    folder: src/pages
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Page title", name: title, widget: string }
+      - { label: "Page text", name: body, widget: markdown, required: false, buttons: [bold, italic, link, quote, heading-two, heading-three, bulleted-list, numbered-list], editor_components: [image] }
+      - { label: "Embedded form or map link", name: embed, widget: string, required: false, hint: "Optional. Paste an Airtable form, Google Form, or Google My Maps embed link to show it on the page." }
+      - { label: "List upcoming Coffee & Conversation events", name: show_coffee_events, widget: boolean, default: false, required: false }
+
+  # ---------------- SETTINGS ----------------
+  - name: settings
+    label: "⚙️ Site Settings"
+    editor: { preview: false }
+    files:
+      - name: settings
+        label: "Donate link, contact info, social links"
+        file: src/_data/settings.json
+        fields:
+          - { label: "Announcement bar (top of every page)", name: announcement, widget: string, required: false, hint: "Optional. e.g. “Early voting starts Feb 15 — find your polling place!” Leave blank to hide." }
+          - { label: "Donate link (Anedot)", name: donate_url, widget: string }
+          - { label: "Donation amount buttons", name: donate_amounts, widget: list }
+          - { label: "Phone", name: phone, widget: string }
+          - { label: "Email", name: email, widget: string }
+          - { label: "Mailing address", name: mailing_address, widget: string }
+          - { label: "Facebook link", name: facebook, widget: string, required: false }
+          - { label: "Instagram link", name: instagram, widget: string, required: false }
+          - { label: "YouTube link", name: youtube, widget: string, required: false }
+          - { label: "“Paid for by” disclaimer", name: disclaimer, widget: string, hint: "Required by Florida law. Change only if the campaign’s legal name changes." }
+          - { label: "Site name", name: site_title, widget: string }
+          - { label: "Site description (Google & sharing)", name: site_description, widget: text }
+          - { label: "Default sharing image", name: share_image, widget: image }
+          - { label: "Mailchimp form address (advanced)", name: mailchimp_form_url, widget: string }
+          - { label: "Mailchimp tag IDs (advanced)", name: mailchimp_tags, widget: string, required: false }
+          - { label: "Google Tag Manager ID (advanced)", name: google_tag_manager_id, widget: string, required: false }

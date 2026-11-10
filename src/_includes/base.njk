@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% set pageTitle = (title + " | " + settings.site_title) if title else (settings.site_title + " | Official Campaign Website") %}
+  <title>{{ pageTitle }}</title>
+  <meta name="description" content="{{ summary or settings.site_description }}">
+  <meta property="og:title" content="{{ title or settings.site_title }}">
+  <meta property="og:description" content="{{ summary or settings.site_description }}">
+  <meta property="og:image" content="https://tarynformayor.com{{ image or settings.share_image }}">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/uploads/2026_01_TSC-Favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  {% if settings.google_tag_manager_id %}
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','{{ settings.google_tag_manager_id }}');</script>
+  {% endif %}
+  <script>
+    // Editor invite / password-reset links land on the homepage: send them to the editor.
+    if (/(invite|recovery|confirmation|email_change)_token=/.test(location.hash) && !location.pathname.startsWith('/admin')) location.replace('/admin/' + location.hash);
+  </script>
+</head>
+<body>
+  {% if settings.google_tag_manager_id %}<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ settings.google_tag_manager_id }}" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>{% endif %}
+  <a class="skip" href="#main">Skip to content</a>
+
+  {% if settings.announcement %}<div class="announce">{{ settings.announcement }}</div>{% endif %}
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a href="/" class="logo" aria-label="Taryn Sabia for Mayor — home"><img src="/uploads/2026_03_PNG-FILE-2-e1773247885725.png" alt="Taryn Sabia for Mayor" width="240" height="63"></a>
+      <button class="menu-btn" aria-expanded="false" aria-controls="nav">Menu</button>
+      <nav id="nav" class="nav" aria-label="Main">
+        <a href="/#meet">Meet Taryn</a>
+        <a href="/#issues">Issues</a>
+        <a href="/news/">News</a>
+        <a href="/events/">Events</a>
+        <a href="/get-involved/">Get Involved</a>
+        <a class="btn btn-gold" href="{{ settings.donate_url }}" target="_blank" rel="noopener">Donate</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <img src="/uploads/2026_02_WHITE-FILE2-2-e1773367657470.png" alt="Taryn Sabia for Mayor" width="220" height="46" class="footer-logo">
+        <p class="footer-contact">
+          <a href="tel:{{ settings.phone | replace(' ', '') | replace('(', '') | replace(')', '') | replace('-', '') }}">{{ settings.phone }}</a><br>
+          <a href="mailto:{{ settings.email }}">{{ settings.email }}</a><br>
+          {{ settings.mailing_address }}
+        </p>
+        <p class="social">
+          {% if settings.facebook %}<a href="{{ settings.facebook }}" target="_blank" rel="noopener">Facebook</a>{% endif %}
+          {% if settings.instagram %}<a href="{{ settings.instagram }}" target="_blank" rel="noopener">Instagram</a>{% endif %}
+          {% if settings.youtube %}<a href="{{ settings.youtube }}" target="_blank" rel="noopener">YouTube</a>{% endif %}
+        </p>
+      </div>
+      <div>
+        <h2 class="footer-h">Explore</h2>
+        <p class="footer-links"><a href="/get-involved/">Get Involved</a><a href="/news/">News &amp; Updates</a><a href="/events/">Events</a><a href="/coffee/">Coffee &amp; Conversation</a><a href="/internship/">Internships</a><a href="/privacy-policy/">Privacy Policy</a></p>
+      </div>
+      <div>
+        <h2 class="footer-h">Stay in the loop</h2>
+        {% set compact = true %}{% include "signup-form.njk" %}
+      </div>
+    </div>
+    <div class="wrap legal">
+      <div class="disclaimer">{{ settings.disclaimer }}</div>
+      <p>© {{ "" | year }} Taryn Sabia for Mayor Campaign. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="/js/site.js" defer></script>
+</body>
+</html>
