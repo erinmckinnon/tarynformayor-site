@@ -29,6 +29,14 @@
     });
   });
 
+  // "Host an event" choice ticks that box on the volunteer form
+  document.querySelectorAll('[data-pick]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var box = document.querySelector('[data-volunteer] input[value="' + a.dataset.pick + '"]');
+      if (box) box.checked = true;
+    });
+  });
+
   // Video: load YouTube only when someone presses play
   document.querySelectorAll('.yt').forEach(function (box) {
     box.addEventListener('click', function () {
