@@ -1,0 +1,11 @@
+<article class="ev-tile{% if not ev.data.image %} no-img{% endif %}" data-end="{{ (ev.data.end or ev.data.start) | isoDay }}">
+  <a class="ev-pic" href="{{ ev.url }}" tabindex="-1" aria-hidden="true"{% if ev.data.image %} style="--img: url('{{ ev.data.image }}')"{% endif %}>
+    {% if ev.data.image %}<img src="{{ ev.data.image }}" alt="" loading="lazy">{% else %}<span class="ev-pic-blank"><strong>{{ ev.data.start | eventDate }}</strong>{{ ev.data.start | eventMonth }}</span>{% endif %}
+  </a>
+  <div class="ev-body">
+    <p class="ev-cat">{{ ev.data.category }}</p>
+    <h3><a href="{{ ev.url }}">{{ ev.data.title }}</a></h3>
+    <p class="ev-meta">{{ ev.data.start | eventDay }}<br>{{ ev.data.start | eventTime(ev.data.end) }}{% if ev.data.location %} · {{ ev.data.location }}{% endif %}</p>
+    {% if ev.data.rsvp_link and not past %}<a class="btn btn-small" href="{{ ev.data.rsvp_link }}" target="_blank" rel="noopener">RSVP</a>{% endif %}
+  </div>
+</article>

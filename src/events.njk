@@ -3,20 +3,84 @@ layout: base.njk
 title: Events
 permalink: /events/
 ---
-{% set up = collections.events | upcoming %}
-{% set past = collections.events | past %}
-<section class="page-head"><div class="wrap"><h1>Events</h1><p class="lede">Coffee &amp; Conversations, canvasses, community events, and key election dates.</p></div></section>
-<section class="section">
-  <div class="wrap">
-    <h2>Upcoming</h2>
-    <div class="event-list" data-hide-past>
-      {% for ev in up %}{% include "event-card.njk" %}{% endfor %}
+{% set keyDates = collections.events | inCategory("Election Date") | upcoming %}
+{% set up = collections.events | notCategory("Election Date") | upcoming %}
+{% set pastAll = collections.events | notCategory("Election Date") | past %}
+{% set pastPics = [] %}{% for e in pastAll %}{% if e.data.image and pastPics.length < 8 %}{% set pastPics = (pastPics.push(e), pastPics) %}{% endif %}{% endfor %}
+
+<section class="page-head ev-head">
+  <div class="wrap ev-head-inner">
+    <div>
+      <h1>Events</h1>
+      <p class="lede">Coffee &amp; Conversations, canvasses, and community events across Tampa. Come say hello.</p>
+      <div class="hero-btns">
+        <a class="btn btn-gold" href="#upcoming">See what’s coming up</a>
+        <a class="btn btn-ghost" href="/get-involved/#volunteer">Host or volunteer</a>
+      </div>
     </div>
-    <p class="empty-note"{% if up.length %} hidden{% endif %}>New events are on the way — check back soon.</p>
+    <img class="ev-head-photo" src="/uploads/2026_07_Screenshot-2026-07-30-at-1.43.10-PM-1-1280x784.webp" alt="Taryn with neighbors at a community event" loading="eager">
+  </div>
+</section>
+
+{% if keyDates.length %}
+<section class="countdown" aria-labelledby="cd-title">
+  <div class="wrap">
+    <h2 id="cd-title">Key dates for voters</h2>
+    <div class="cd-grid" data-hide-past>
+      {% for ev in keyDates | head(3) %}
+      <a class="cd-card" href="{{ ev.url }}" data-end="{{ (ev.data.end or ev.data.start) | isoDay }}" data-date="{{ ev.data.start | isoDay }}">
+        <span class="cd-days" data-countdown>{{ ev.data.start | eventMonth }} {{ ev.data.start | eventDate }}</span>
+        <span class="cd-name">{{ ev.data.title }}</span>
+        <span class="cd-when">{{ ev.data.start | eventDay }}, {{ ev.data.start | eventTime(ev.data.end) }}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="section" id="upcoming">
+  <div class="wrap">
+    <div class="section-head"><h2>Upcoming events</h2></div>
+    <div class="ev-grid" data-hide-past>
+      {% for ev in up %}{% include "event-tile.njk" %}{% endfor %}
+    </div>
+    <div class="ev-empty"{% if up.length %} hidden{% endif %}>
+      <div>
+        <h3>New events are being planned</h3>
+        <p>Get them in your inbox the moment they’re announced, or invite Taryn to your neighborhood.</p>
+      </div>
+      <div class="hero-btns">
+        <a class="btn btn-plum" href="/#connect">Get event updates</a>
+        <a class="btn btn-outline" href="/get-involved/#volunteer">Host an event</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if pastPics.length %}
+<section class="section cream">
+  <div class="wrap">
+    <div class="section-head"><h2>Where we’ve been</h2><a href="/coffee/">Coffee &amp; Conversation map</a></div>
+    <div class="ev-grid past">
+      {% set past = true %}
+      {% for ev in pastPics %}{% include "event-tile.njk" %}{% endfor %}
+    </div>
     <details class="past-events">
-      <summary>Past events ({{ past.length }})</summary>
-      <div class="event-list">{% for ev in past %}{% include "event-card.njk" %}{% endfor %}</div>
+      <summary>See all {{ pastAll.length }} past events</summary>
+      <div class="event-list">{% for ev in pastAll %}{% include "event-card.njk" %}{% endfor %}</div>
     </details>
   </div>
 </section>
-{% include "donate-band.njk" %}
+{% endif %}
+
+<section class="community" style="--photo: url('/uploads/2026_03_FotoBoho_110-1-scaled.webp')">
+  <div class="wrap">
+    <h2>Bring Taryn to your neighborhood.</h2>
+    <p>Host a coffee, a house party, or a meeting of your neighborhood association. We’ll help with the rest.</p>
+    <div class="hero-btns">
+      <a class="btn btn-gold" href="/get-involved/#volunteer">Host an event</a>
+      <a class="btn btn-ghost" href="mailto:{{ settings.email }}?subject=Event%20invitation%20for%20Taryn">Email the campaign</a>
+    </div>
+  </div>
+</section>

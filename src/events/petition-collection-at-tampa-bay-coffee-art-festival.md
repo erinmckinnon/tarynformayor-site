@@ -2,7 +2,7 @@
 title: "Petition Collection at Tampa Bay Coffee & Art Festival"
 start: "2026-10-24T10:00"
 end: "2026-10-24T13:00"
-category: "Coffee & Conversation"
+category: "Volunteer"
 image: "/uploads/2026_10_Petition-collection-at-Tampa-Bay-festival.webp"
 ---
 

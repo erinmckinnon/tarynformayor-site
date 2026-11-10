@@ -47,8 +47,16 @@
     list.querySelectorAll(':scope > [data-end]').forEach(function (c) {
       if (c.dataset.end < today || (limit && shown >= limit)) c.remove(); else shown++;
     });
-    var empty = list.parentNode.querySelector('.empty-note');
+    var empty = list.parentNode.querySelector('.empty-note, .ev-empty');
     if (empty) empty.hidden = shown > 0;
+  });
+  // Countdown on election date cards: "112 days away"
+  document.querySelectorAll('[data-countdown]').forEach(function (el) {
+    var d = el.closest('[data-date]').dataset.date;
+    var days = Math.round((Date.parse(d) - Date.parse(today)) / 86400000);
+    if (days > 1) el.textContent = days + ' days away';
+    else if (days === 1) el.textContent = 'Tomorrow';
+    else if (days === 0) el.textContent = 'Today';
   });
   document.querySelectorAll('.past-note').forEach(function (n) { n.hidden = !(n.dataset.end < today); });
 
